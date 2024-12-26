@@ -1,5 +1,7 @@
 <nav>
-    <div class="menu-icon">☰</div>
+    <div class="menu-icon" onclick="toggleMenu()">
+            <img src="menu-icon.png" alt="Menu Icon" width="40" height="40">
+    </div>
     <ul class="menu-list">
         <li><a href="index.html" class="menu-link" data-page="home">Home</a></li>
         <li><a href="about.html" class="menu-link" data-page="about">About</a></li>
@@ -7,21 +9,7 @@
         <li><a href="contact.html" class="menu-link" data-page="contact">Contact</a></li>
     </ul>
 </nav>
-
-<script>
-    // Highlight the active menu item based on the current page
-    const currentPage = location.pathname.split("/").pop().split(".")[0];
-    document.querySelectorAll(".menu-link").forEach(link => {
-        if (link.dataset.page === currentPage) {
-            link.classList.add("active");
-        }
-    });
-
-    // Add a toggle function for the menu icon
-    document.querySelector(".menu-icon").addEventListener("click", () => {
-        document.querySelector(".menu-list").classList.toggle("show");
-    });
-</script>
+<script src="script.js"></script>
 
 <style>
     .menu-list {
