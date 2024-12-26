@@ -2,21 +2,53 @@
     <div class="menu-icon" onclick="toggleMenu()">
             <img src="image/menu.png" alt="Menu Icon" width="40" height="40">
     </div>
-    <ul class="menu-list">
+    <div class="menu" id="menu">
+    <ul>
         <li><a href="index.html" class="menu-link" data-page="home">Home</a></li>
         <li><a href="about.html" class="menu-link" data-page="about">About</a></li>
         <li><a href="fabrics.html" class="menu-link" data-page="fabrics">Fabrics</a></li>
         <li><a href="contact.html" class="menu-link" data-page="contact">Contact</a></li>
     </ul>
+    </div>
 </nav>
 <script src="script.js"></script>
 
 <style>
-    .menu-list {
-        display: none;
+    
+.menu-icon {
+    cursor: pointer;
     }
+    
+   .menu {
+    background-color: #444;
+    position: absolute;
+    top: 60px; /* Adjust based on header height */
+    right: 10px;
+    display: none; /* Initially hidden */
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    }
+.menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
 
-    .menu-list.show {
+.menu ul li {
+    padding: 10px 20px;
+       }
+    .menu ul li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.3s;
+}
+
+.menu ul li a:hover {
+    background-color: #007BFF;
+    border-radius: 4px;
+}
+    .menu.show {
         display: block;
     }
 
@@ -25,8 +57,6 @@
         color: red;
     }
 
-    .menu-icon {
-        cursor: pointer;
-    }
+    
     </style>
     
