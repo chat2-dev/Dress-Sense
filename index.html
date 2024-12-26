@@ -19,6 +19,42 @@
             text-align: center;
             font-size: 1.5rem;
         }
+        .menu-icon {
+    cursor: pointer;
+}
+
+.menu-icon img {
+    filter: invert(1); /* Ensures the icon appears white on a dark background */
+        }
+        .menu {
+    background-color: #d4af37;
+    position: absolute;
+    top: 60px; /* Adjust based on header height */
+    right: 10px;
+    display: none; /* Initially hidden */
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+        .menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menu ul li {
+    padding: 10px 20px;
+        }
+    .menu ul li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.3s;
+}
+
+.menu ul li a:hover {
+    background-color: #007BFF;
+    border-radius: 4px;
+        }
         .container {
             padding: 2rem;
         }
@@ -37,17 +73,21 @@
 </head>
 <body>
     <nav style="background-color: #d4af37; padding: 1rem; text-align: center;">
-    <a href="index.html" style="color: white; text-decoration: none; margin: 0 15px;">Home</a>
-    <a href="fashion-trends.html" style="color: white; text-decoration: none; margin: 0 15px;">Fashion Trends</a>
-    <a href="fabrics.html" style="color: white; text-decoration: none; margin: 0 15px;">Fabrics</a>
-    <a href="dress-types.html" style="color: white; text-decoration: none; margin: 0 15px;">Dress Types</a>
-    </nav>
+    >
     <header>
         <div class="menu-icon" onclick="toggleMenu()">
             <img src="/Dress-Sense/image/menu.png" alt="Menu Icon" width="40" height="40">
         </div>
         Dress Sense
     </header>
+    <div class="menu" id="menu">
+        <ul>
+         <li><a href="index.html" style="color: white; text-decoration: none; margin: 0 15px;">Home</a></li>
+         <li><a href="fashion-trends.html" style="color: white; text-decoration: none; margin: 0 15px;">Fashion Trends</a></li>
+         <li><a href="fabrics.html" style="color: white; text-decoration: none; margin: 0 15px;">Fabrics</a></li>
+         <li><a href="dress-types.html" style="color: white; text-decoration: none; margin: 0 15px;">Dress Types</a></li>
+        </ul>
+         </div>
     <div class="container">
         <div class="section">
             <h2>Explore Fashion Trends</h2>
@@ -68,5 +108,6 @@
     <footer style="background-color: #333; color: white; text-align: center; padding: 1rem; margin-top: 2rem;">
     <p>&copy; 2024 Dress Sense | All rights reserved</p>
 </footer>
+    <script src="script.js"></script>
 </body>
 </html>
