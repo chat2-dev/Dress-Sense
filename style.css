@@ -14,3 +14,10 @@ header {
             z-index: 1;
             
         }
+.container {
+    padding: 20px;
+    margin: 0 auto;
+    max-width: 800px;
+    background-color: #f4f4f4;
+    border: 1px solid #ddd;
+}
