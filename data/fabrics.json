@@ -1,0 +1,24 @@
+[
+    {
+        "name": "Cotton",
+        "origin": "India, Egypt",
+        "materialType": "Natural",
+        "bestFor": ["Shirts", "Summer Dresses"],
+        "texture": "Soft",
+        "priceRange": "$5-$10 per meter",
+        "careInstructions": "Machine washable",
+        "availability": "Common",
+        "imageURL": "images/cotton.jpg"
+    },
+    {
+        "name": "Silk",
+        "origin": "China, India",
+        "materialType": "Natural",
+        "bestFor": ["Sarees", "Luxury Dresses"],
+        "texture": "Smooth and Shiny",
+        "priceRange": "$20-$50 per meter",
+        "careInstructions": "Dry clean only",
+        "availability": "Rare",
+        "imageURL": "images/silk.jpg"
+    }
+      ]
