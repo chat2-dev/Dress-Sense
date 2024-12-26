@@ -40,12 +40,15 @@
     </style>
 </head>
 <body>
-    <nav style="background-color: #d4af37; padding: 1rem; text-align: center;">
-    <a href="index.html" style="color: white; text-decoration: none; margin: 0 15px;">Home</a>
-    <a href="fashion-trends.html" style="color: white; text-decoration: none; margin: 0 15px;">Fashion Trends</a>
-    <a href="fabrics.html" style="color: white; text-decoration: none; margin: 0 15px;">Fabrics</a>
-    <a href="dress-types.html" style="color: white; text-decoration: none; margin: 0 15px;">Dress Types</a>
-</nav>
+    <div id="menu-placeholder"></div>
+<script>
+    fetch("menu.html")
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById("menu-placeholder").innerHTML = data;
+        });
+</script>
+
     <header>
         Dress Types
     </header>
