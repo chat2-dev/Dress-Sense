@@ -1,7 +1,6 @@
 <div class="menu-bar">
     <div class="menu-icon" onclick="toggleMenu()">
-            <img src="image/menu.png" alt="Menu Icon" width="40" height="40">
-    </div>
+            </div>
   
 <div class="menu-content" id="menu-content">
     <ul>
@@ -42,14 +41,21 @@
     .menu-bar.open {
   width: 250px; /* Adjust width as needed */
     }
-    
-.menu-icon {
+    .menu-icon {
     cursor: pointer;
     position: absolute;
-    left:10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    left: 10px; /* Adjust to place the icon in the left corner */
+    top: 10px; /* Adjust to place the icon at the top */
+    width: 40px; /* Set the width of the icon */
+    height: 40px; /* Set the height of the icon */
+    background-image: url('image/menu.png'); /* Use the correct path to your PNG image */
+    background-size: contain; /* Ensure the image fits within the container */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Optional, to give a shadow effect */
+    z-index: 9999; /* Ensure the icon stays on top of other content */
+      }
+    
 
-    }
     
    .menu-content {
     width: 100%;
