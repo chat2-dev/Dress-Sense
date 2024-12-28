@@ -1,0 +1,51 @@
+{
+  "items": [
+    {
+      "category": "Fabric",
+      "name": "Cotton",
+      "origin": "India",
+      "cost_per_meter": "₹300",
+      "type": "Natural",
+      "best_for": "Skin-friendly, summer wear",
+      "tags": ["soft", "breathable", "durable"]
+    },
+    {
+      "category": "Fabric",
+      "name": "Silk",
+      "origin": "China",
+      "cost_per_meter": "₹1000",
+      "type": "Natural",
+      "best_for": "Luxury, traditional wear",
+      "tags": ["smooth", "shiny", "expensive"]
+    },
+    {
+      "category": "Dress Type",
+      "name": "Saree",
+      "origin": "India",
+      "description": "Traditional Indian attire worn by women.",
+      "tags": ["traditional", "elegant", "festive"]
+    },
+    {
+      "category": "Dress Type",
+      "name": "Blazer",
+      "origin": "Europe",
+      "description": "Formal jacket often worn in professional settings.",
+      "tags": ["formal", "professional", "stylish"]
+    },
+    {
+      "category": "Fashion Trend",
+      "name": "Street Style",
+      "year": 2023,
+      "description": "Casual and comfortable clothing influenced by urban culture.",
+      "tags": ["casual", "urban", "modern"]
+    },
+    {
+      "category": "Fashion Trend",
+      "name": "Sustainable Fashion",
+      "year": 2022,
+      "description": "Clothing made from eco-friendly materials and practices.",
+      "tags": ["eco-friendly", "green", "sustainable"]
+    }
+  ]
+    }
+      
