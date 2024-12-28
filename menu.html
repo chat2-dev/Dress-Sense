@@ -1,9 +1,9 @@
-
+<div class="menu-bar">
     <div class="menu-icon" onclick="toggleMenu()">
             <img src="image/menu.png" alt="Menu Icon" width="40" height="40">
     </div>
   
-<div class="menu" id="menu">
+<div class="menu-content" id="menu">
     <ul>
         <li><a href="search/search.html" class="menu-link" data-page="home">search</a></li>
         <li><a href="index.html" class="menu-link" data-page="home">HOME</a></li>
@@ -19,11 +19,29 @@
         <li><a href="contact.html" class="menu-link" data-page="contact">CONTACT</a></li>
     </ul>
     </div>
+</div>
 
 <script src="script.js"></script>
 
 
 <style>
+.menu-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0;
+  background-color: #d4af37;
+  overflow-x: hidden;
+  transition: 0.3s;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 10px 0;
+}
+    .menu-bar.open {
+  width: 250px; /* Adjust width as needed */
+    }
     
 .menu-icon {
     cursor: pointer;
@@ -33,7 +51,9 @@
 
     }
     
-   .menu {
+   .menu-content {
+    width: 100%;
+    margin-top: 50px;
     background-color: #d4af37;
     position: absolute;
     top: 60px; /* Adjust based on header height */
@@ -42,26 +62,31 @@
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     }
-.menu ul {
+.menu-content ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
 }
 
-.menu ul li {
+.menu-content ul li {
     padding: 10px 20px;
        }
-    .menu ul li a {
+.menu-content ul li a {
     color: white;
     text-decoration: none;
     display: block;
     transition: background-color 0.3s;
 }
 
-.menu ul li a:hover {
+.menu-content ul li a:hover {
     background-color: #007BFF;
     border-radius: 4px;
-}    
+} 
+    .menu-icon.open {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+    }
 </style>
 
     
