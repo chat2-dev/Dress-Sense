@@ -27,7 +27,20 @@
 <body>
     <header>
     <div id="menu-placeholder"></div>
-        
+        <script>
+        // Load menu.html
+        fetch("menu.html")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("menu-placeholder").innerHTML = data;
+
+                // Add event listener for toggle
+                document.getElementById("menu-toggle").addEventListener("click", function() {
+                    let menuItems = document.getElementById("menu-items");
+                    menuItems.style.display = (menuItems.style.display === "block") ? "none" : "block";
+                });
+            });
+    </script>
     
         <h1>Dress Sence</h1>
     </header>
