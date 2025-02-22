@@ -46,13 +46,14 @@
     <div id="menu-placeholder">
         
     </div>
-<script src="../script.js">
+<script>
     fetch("../menu.html")
         .then(response => response.text())
         .then(data => {
             document.getElementById("menu-placeholder").innerHTML = data;
         });
 </script>
+        <script src="../script.js"></script>
 
    
         <h1>Fabrics</h1>
