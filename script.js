@@ -1,13 +1,17 @@
-function toggleMenu() {
-  const menuContainer = document.getElementById('menu-container');
-  if (menuContainer.innerHTML === "") {
-    fetch('menu.html')
-      .then(response => response.text())
-      .then(data => {
-        menuContainer.innerHTML = data;
-      })
-      .catch(error => console.error('Error fetching menu:', error));
-  } else {
-    menuContainer.innerHTML = "";
-  }
-}
+document.addEventListener("DOMContentLoaded", function() {
+    fetch("menu.html")
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById("menu-container").innerHTML = data;
+
+            // Toggle menu visibility
+            const menuToggle = document.getElementById("menu-toggle");
+            const menuList = document.getElementById("menu-list");
+
+            menuToggle.addEventListener("click", function() {
+                menuList.style.display = menuList.style.display === "block" ? "none" : "block";
+            });
+        })
+        .catch(error => console.error("Error loading menu:", error));
+});
+                                        
