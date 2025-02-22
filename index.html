@@ -26,6 +26,17 @@
 </head>
 <body>
     <header>
+        <div id="menu-placeholder"></div>
+
+<script>
+    fetch('menu.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('menu-placeholder').innerHTML = data;
+        })
+        .catch(error => console.error('Error loading menu:', error));
+</script>
+        
         <h1>Dress Sence</h1>
     </header>
         
