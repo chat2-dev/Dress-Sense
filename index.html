@@ -26,9 +26,17 @@
 </head>
 <body>
     <header>
-    <div id="menu-placeholder"></div>
-    <img src="image/menu.png" alt="Menu Icn">
-        <h1>Dress Shue</h1>
+    
+        <div id="menu-placeholder"></div>
+<script>
+    fetch("menu.html")
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById("menu-placeholder").innerHTML = data;
+        });
+</script>
+    <img src="ihmage/menu.png" alt="Menu Icn">
+        <h1>Dress sence</h1>
     </header>
         
 
