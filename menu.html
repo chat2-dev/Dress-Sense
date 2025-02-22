@@ -1,11 +1,14 @@
 
-<div class="menu-icon" onclick="toggleMenu()">
-      <img src="../image/menu.png" alt="Menu Icon">      
-</div>
-<div class="menu-bar">
+
+<nav class="menu-bar">
+      <div class="menu-icon" id="menu-icon" role="button" aria-controls="menu-content" aria-expanded="false">
+
+            <img src="../image/menu.png" alt="Menu Icon" id="menu-icon-img">      
+
+      </div>
 
   
-<div class="menu-content" id="menu-content">
+<div class="menu-content" id="menu-content" roll="menu">
     <ul>
         <li><a href="search/search.html" class="menu-link" data-page="home">search</a></li>
         <li><a href="index.html" class="menu-link" data-page="home">HOME</a></li>
@@ -21,7 +24,7 @@
         <li><a href="contact.html" class="menu-link" data-page="contact">CONTACT</a></li>
     </ul>
     </div>
-</div>
+</nav>
 
 <style>
 .body {
@@ -73,20 +76,29 @@
 }
     </style>
 <script>
-      function toggleMenu() {
-    var menu = document.getElementById("menu-content");
-    if (menu.style.display === "block") {
-        menu.style.display = "none";
-    } else {
-        menu.style.display = "block";
-    }
-      }
-</script>
 
+        document.getElementById('menu-icon').addEventListener('click', function() {
 
-    
+            var menu = document.getElementById('menu-content');
 
-    
+            var expanded = this.getAttribute('aria-expanded') === 'true';
 
+            menu.classList.toggle('open');
 
-    
+            this.setAttribute('aria-expanded', !expanded);
+
+            var iconImg = document.getElementById('menu-icon-img');
+
+            if (expanded) {
+
+                iconImg.src = '../image/menu.png'; // Change to menu icon
+
+            } else {
+
+                iconImg.src = '../image/close.png'; // Change to close icon
+
+            }
+
+        });
+
+              </script>
