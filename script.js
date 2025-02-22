@@ -18,7 +18,7 @@
 
             } else {
 
-                iconImg.src = '../image/close.png'; // Change to close icon
+                iconImg.src = '../image/menu.png'; // Change to close icon
 
             }
 
