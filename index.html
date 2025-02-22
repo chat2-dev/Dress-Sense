@@ -26,18 +26,30 @@
 </head>
 <body>
     <header>
-        <div id="menu-placeholder"></div>
-
-<script>
-    fetch('menu.html')
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('menu-placeholder').innerHTML = data;
-        })
-        .catch(error => console.error('Error loading menu:', error));
-</script>
         
-        <h1>Dress Sence</h1>
+        <div class="menu-bar">
+    <div class="menu-icon" onclick="toggleMenu()">
+      <img src="image/menu.png" alt="Menu Icon">      
+    </div>
+  
+<div class="menu-content" id="menu-content">
+    <ul>
+        <li><a href="search/search.html" class="menu-link" data-page="home">search</a></li>
+        <li><a href="index.html" class="menu-link" data-page="home">HOME</a></li>
+        <li><a href="fabrics/fabrics.html" class="menu-link" data-page="fabrics/fabrics.html">FABRICS</a></li>
+        <li><a href="fashion-trends.html" class="menu-link" data-page="fashion-trends">FASHION TRENDS</a></li>
+        <li><a href="dress-types.html" class="menu-link" data-page="dress-types">DRESS TYPE</a></li>
+        <li><a href="dye.html" class="menu-link" data-page="dye">DYE</a></li>
+        <li><a href="index.html" class="menu-link" data-page="home">MODELS</a></li>
+        <li><a href="index.html" class="menu-link" data-page="home">FABRIC VILLAGE</a></li>
+        <li><a href="index.html" class="menu-link" data-page="home">BRANDS</a></li>
+        <li><a href="index.html" class="menu-link" data-page="home">PATTERNS</a></li>
+        <li><a href="about.html" class="menu-link" data-page="about">ABOUT</a></li>
+        <li><a href="contact.html" class="menu-link" data-page="contact">CONTACT</a></li>
+    </ul>
+    </div>
+</div>
+ <h1>Dress Sence</h1>
     </header>
         
 
