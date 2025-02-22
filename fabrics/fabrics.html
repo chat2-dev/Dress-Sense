@@ -30,7 +30,11 @@
 </head>
 <body>
     <header>
-    <div id="menu-placeholder"></div>
+    <div id="menu-placeholder">
+        <div class="menu-icon" onclick="toggleMenu()">
+      <img src="image/menu.png" alt="Menu Icon">      
+        </div>
+    </div>
 <script>
     fetch("menu.html")
         .then(response => response.text())
