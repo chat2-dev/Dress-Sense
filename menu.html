@@ -10,28 +10,43 @@
   <nav class="menu-bar">
 <div class="menu-content" id="menu-content" role="menu">
     <ul>
-        <li><a href="search/search.html" class="menu-link" data-page="home">search</a></li>
-        <li><a href="index.html" class="menu-link" data-page="home">HOME</a></li>
-        <li><a href="fabrics/fabrics.html" class="menu-link" data-page="fabrics/fabrics.html">FABRICS</a></li>
-        <li><a href="fashion-trends.html" class="menu-link" data-page="fashion-trends">FASHION TRENDS</a></li>
-        <li><a href="dress-types.html" class="menu-link" data-page="dress-types">DRESS TYPE</a></li>
-        <li><a href="dye.html" class="menu-link" data-page="dye">DYE</a></li>
-        <li><a href="index.html" class="menu-link" data-page="home">MODELS</a></li>
-        <li><a href="index.html" class="menu-link" data-page="home">FABRIC VILLAGE</a></li>
-        <li><a href="index.html" class="menu-link" data-page="home">BRANDS</a></li>
-        <li><a href="index.html" class="menu-link" data-page="home">PATTERNS</a></li>
-        <li><a href="about.html" class="menu-link" data-page="about">ABOUT</a></li>
-        <li><a href="contact.html" class="menu-link" data-page="contact">CONTACT</a></li>
+        <li><a href="/search/search.html" class="menu-link" data-page="home">search</a></li>
+        <li><a href="/index.html" class="menu-link" data-page="home">HOME</a></li>
+        <li><a href="/fabrics/fabrics.html" class="menu-link" data-page="fabrics/fabrics.html">FABRICS</a></li>
+        <li><a href="/fashion-trends.html" class="menu-link" data-page="fashion-trends">FASHION TRENDS</a></li>
+        <li><a href="/dress-types.html" class="menu-link" data-page="dress-types">DRESS TYPE</a></li>
+        <li><a href="/dye.html" class="menu-link" data-page="dye">DYE</a></li>
+        <li><a href="/index.html" class="menu-link" data-page="home">MODELS</a></li>
+        <li><a href="/index.html" class="menu-link" data-page="home">FABRIC VILLAGE</a></li>
+        <li><a href="/index.html" class="menu-link" data-page="home">BRANDS</a></li>
+        <li><a href="/index.html" class="menu-link" data-page="home">PATTERNS</a></li>
+        <li><a href="/about.html" class="menu-link" data-page="about">ABOUT</a></li>
+        <li><a href="/contact.html" class="menu-link" data-page="contact">CONTACT</a></li>
     </ul>
     </div>
 </nav>
 
 <style>
-.body {
+body {
     margin: 0;
     font-family: Arial, sans-serif;
 }
+.menu-icon {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    cursor: pointer;
+    background-color: white;
+    padding: 5px;
+    border-radius: 5px;
+    z-index: 10000;
+}
 
+.menu-icon img {
+    width: 30px;
+    height: 30px;
+      }
+      
 .menu-bar {
     position: fixed;
     top: 0;
