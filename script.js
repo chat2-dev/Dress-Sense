@@ -1,4 +1,8 @@
-
+fetch("../menu.html")
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById("menu-placeholder").innerHTML = data;
+              </script>
             // Ensure elements exist after loading
             setTimeout(() => {
                 const menuIcon = document.getElementById('menu-icon');
