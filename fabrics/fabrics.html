@@ -46,13 +46,16 @@
     <div id="menu-placeholder">
  </div>
 
+         
+        
+             
          <script>
     fetch("../menu.html")
         .then(response => response.text())
         .then(data => {
             document.getElementById("menu-placeholder").innerHTML = data;
 
-            // Now that menu.html is loaded, add the event listener
+            // Get elements after menu is loaded
             const menuIcon = document.getElementById('menu-icon');
             const menuContent = document.getElementById('menu-content');
             const iconImg = document.getElementById('menu-icon-img');
@@ -63,19 +66,17 @@
                 menuIcon.setAttribute('aria-expanded', !expanded);
                 iconImg.src = expanded ? '../image/menu.png' : '../image/menu.png'; // Update if needed
             });
-        
-             
-         
+
+            // Close menu when clicking outside
             document.addEventListener('click', function(event) {
-  // Check if the click happened outside both the menu icon and menu content
-  if (!menuIcon.contains(event.target) && !menuContent.contains(event.target)) {
-    menuContent.classList.remove('open');
-    menuIcon.setAttribute('aria-expanded', 'false');
-  }
-});
+                if (!menuIcon.contains(event.target) && !menuContent.contains(event.target)) {
+                    menuContent.classList.remove('open');
+                    menuIcon.setAttribute('aria-expanded', 'false');
+                }
             });
-            
-        </script>
+        });
+         </script>
+        
         
 
    
