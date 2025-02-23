@@ -1,30 +1,31 @@
 
+            // Ensure elements exist after loading
+            setTimeout(() => {
+                const menuIcon = document.getElementById('menu-icon');
+                const menuContent = document.getElementById('menu-content');
+                const iconImg = document.getElementById('menu-icon-img');
 
-        document.getElementById('menu-icon').addEventListener('click', function() {
+                if (!menuIcon || !menuContent) {
+                    console.error("Menu elements not found");
+                    return;
+                }
 
-            var menu = document.getElementById('menu-content');
+                menuIcon.addEventListener('click', function () {
+                    const expanded = menuIcon.getAttribute('aria-expanded') === 'true';
+                    menuContent.classList.toggle('open');
+                    menuIcon.setAttribute('aria-expanded', !expanded);
+                    iconImg.src = expanded ? '../image/menu.png' : '../image/menu-close.png'; // Adjust image if needed
+                });
 
-            var expanded = this.getAttribute('aria-expanded') === 'true';
+                // Close menu when clicking outside
+                document.addEventListener('click', function (event) {
+                    if (!menuIcon.contains(event.target) && !menuContent.contains(event.target)) {
+                        menuContent.classList.remove('open');
+                        menuIcon.setAttribute('aria-expanded', 'false');
+                    }
+                });
+            }, 100); // Small delay to ensure menu loads
+        })
+        .catch(error => console.error("Error loading menu:", error));
 
-            menu.classList.toggle('open');
-
-            this.setAttribute('aria-expanded', !expanded);
-
-            var iconImg = document.getElementById('menu-icon-img');
-
-            if (expanded) {
-
-                iconImg.src = '../image/menu.png'; // Change to menu icon
-
-            } else {
-
-                iconImg.src = '../image/menu.png'; // Change to close icon
-
-            }
-
-        });
-
-    
-
-
-
+                                                     
