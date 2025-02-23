@@ -53,38 +53,26 @@
             document.getElementById("menu-placeholder").innerHTML = data;
         });
 </script>
-        <script>
-            
+         <script>
+    fetch("../menu.html")
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById("menu-placeholder").innerHTML = data;
 
-        document.getElementById('menu-icon').addEventListener('click', function() {
+            // Now that menu.html is loaded, add the event listener
+            const menuIcon = document.getElementById('menu-icon');
+            const menuContent = document.getElementById('menu-content');
+            const iconImg = document.getElementById('menu-icon-img');
 
-            var menu = document.getElementById('menu-content');
-
-            var expanded = this.getAttribute('aria-expanded') === 'true';
-
-            menu.classList.toggle('open');
-
-            this.setAttribute('aria-expanded', !expanded);
-
-            var iconImg = document.getElementById('menu-icon-img');
-
-            if (expanded) {
-
-                iconImg.src = '../image/menu.png'; // Change to menu icon
-
-            } else {
-
-                iconImg.src = '../image/menu.png'; // Change to close icon
-
-            }
-
+            menuIcon.addEventListener('click', function () {
+                const expanded = menuIcon.getAttribute('aria-expanded') === 'true';
+                menuContent.classList.toggle('open');
+                menuIcon.setAttribute('aria-expanded', !expanded);
+                iconImg.src = expanded ? '../image/menu.png' : '../image/menu.png'; // Update if needed
+            });
         });
-
-    
-
-
-            
-        </script>
+         </script>
+        
 
    
         <h1>#Fabrics</h1>
