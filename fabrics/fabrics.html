@@ -71,7 +71,18 @@
                 iconImg.src = expanded ? '../image/menu.png' : '../image/menu.png'; // Update if needed
             });
         });
+             
          </script>
+        <script>
+            document.addEventListener('click', function(event) {
+  // Check if the click happened outside both the menu icon and menu content
+  if (!menuIcon.contains(event.target) && !menuContent.contains(event.target)) {
+    menuContent.classList.remove('open');
+    menuIcon.setAttribute('aria-expanded', 'false');
+  }
+});
+            
+        </script>
         
 
    
