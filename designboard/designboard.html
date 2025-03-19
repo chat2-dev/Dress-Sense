@@ -68,6 +68,13 @@
                 y = event.clientY - canvas.offsetTop;
             }
 
+            if (currentTool === 'eraser-tool') {
+                ctx.globalCompositeOperation = 'destination-out';
+                ctx.lineWidth = 10; // Eraser size
+            } else {
+                ctx.globalCompositeOperation = 'source-over';
+            }
+
             ctx.lineTo(x, y);
             ctx.stroke();
             ctx.beginPath();
