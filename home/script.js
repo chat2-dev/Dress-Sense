@@ -7,10 +7,12 @@ document.addEventListener('DOMContentLoaded', () => {
         event.preventDefault();
         const title = document.getElementById('blog-title').value;
         const content = document.getElementById('blog-content').value;
+        const category = document.getElementById('blog-category').value;
 
         const blog = {
             title,
             content,
+            category,
             date: new Date().toLocaleDateString()
         };
 
@@ -36,8 +38,28 @@ document.addEventListener('DOMContentLoaded', () => {
                     <h3>${blog.title}</h3>
                     <p>${blog.content}</p>
                     <small>${blog.date}</small>
+                    <p>Category: ${blog.category}</p>
                 `;
                 blogsContainer.appendChild(blogElement);
+            });
+        }
+    }
+
+    function displayCategoryBlogs(category) {
+        const categoryBlogs = JSON.parse(localStorage.getItem(`${category}.html`)) || [];
+        const categoryContainer = document.getElementById('category-blogs-container');
+        if (categoryContainer) {
+            categoryContainer.innerHTML = '';
+            categoryBlogs.forEach(blog => {
+                const blogElement = document.createElement('div');
+                blogElement.classList.add('blog');
+                blogElement.innerHTML = `
+                    <h3>${blog.title}</h3>
+                    <p>${blog.content}</p>
+                    <small>${blog.date}</small>
+                    <p>Category: ${blog.category}</p>
+                `;
+                categoryContainer.appendChild(blogElement);
             });
         }
     }
@@ -56,4 +78,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     displayBlogs();
+
+    // Check if the page is a category page and display category blogs
+    const category = document.body.getAttribute('data-category');
+    if (category) {
+        displayCategoryBlogs(category);
+    }
 });
