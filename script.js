@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     const expanded = menuIcon.getAttribute("aria-expanded") === "true";
                     menuContent.classList.toggle("open");
                     menuIcon.setAttribute("aria-expanded", !expanded);
-                    iconImg.src = expanded ? "../image/menu.png" : "../image/menu-close.png";
+                    iconImg.src = expanded ? "image/menu.png" : "image/menu-close.png";
                 });
 
                 // Close menu when clicking outside
