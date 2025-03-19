@@ -40,6 +40,11 @@
         .menu-bar.open {
             display: block;
         }
+        .blog {
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 1rem;
+        }
     </style>
 </head>
 <body data-category="fabric">
@@ -80,11 +85,31 @@
         <div id="category-blogs-container">
             <!-- Categorized blogs will be dynamically inserted here -->
         </div>
+        <div id="blogs-container">
+            <!-- Blogs will be dynamically inserted here -->
+        </div>
     </div>
     <footer style="background-color: #333; color: white; text-align: center; padding: 1rem; margin-top: 2rem;">
         <p>&copy; 2024 Dress Sense | All rights reserved</p>
     </footer>
     <script src="../script.js"></script>
+    <script>
+        // Fetch and display blogs for category pages
+        document.addEventListener('DOMContentLoaded', function() {
+            const category = document.body.getAttribute('data-category');
+            if (category) {
+                const categoryBlogs = JSON.parse(localStorage.getItem(`${category}.html`)) || [];
+                const blogsContainer = document.getElementById('blogs-container');
+                blogsContainer.innerHTML = '';
+                categoryBlogs.forEach(blog => {
+                    const blogElement = document.createElement('div');
+                    blogElement.className = 'blog';
+                    blogElement.innerHTML = `<h2>${blog.title}</h2><p>${blog.content}</p><small>${new Date(blog.date).toLocaleString()}</small><p>Category: ${blog.category}</p>`;
+                    blogsContainer.appendChild(blogElement);
+                });
+            }
+        });
+    </script>
 </body>
 </html>
 
