@@ -36,6 +36,12 @@
     width: 24px;
     height: 24px;
         }
+        .menu-bar {
+            display: none;
+        }
+        .menu-bar.open {
+            display: block;
+        }
         
     </style>
 
@@ -58,6 +64,19 @@
         </script>
         <h1>Fabrics</h1>
     </header>
+    <button id="toggle-menu">Toggle Menu</button>
+    <div id="menu-bar" class="menu-bar">
+    </div>
+    <script>
+        document.getElementById('toggle-menu').addEventListener('click', function() {
+            var menuBar = document.getElementById('menu-bar');
+            if (menuBar.classList.contains('open')) {
+                menuBar.classList.remove('open');
+            } else {
+                menuBar.classList.add('open');
+            }
+        });
+    </script>
     <script scr="../script.js"> </script>
             
     <div class="container">
@@ -96,4 +115,4 @@
     
 </body>
   </html>
-  
+
