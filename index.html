@@ -76,6 +76,9 @@
     </script>
 </head>
 <body>
+    <!-- Include the menu bar -->
+    <div id="menu-bar"></div>
+    
     <header>
         <nav class="menu-bar">
             <div id="menu-icon" class="menu-icon" onclick="toggleMenu()">
@@ -123,5 +126,13 @@
         <p>&copy; 2024 Dress Sense | All rights reserved</p>
     </footer>
     <script src="script.js"></script>
+    <script>
+        // Load the menu bar
+        fetch('menu.html')
+          .then(response => response.text())
+          .then(data => {
+            document.getElementById('menu-bar').innerHTML = data;
+          });
+    </script>
 </body>
 </html>
