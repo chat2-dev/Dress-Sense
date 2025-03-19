@@ -56,6 +56,8 @@
             document.getElementById('blog-form').reset();
             // Display the blogs
             displayBlogs();
+            // Push blog to categorized page
+            pushToCategoryPage(blog);
         });
 
         function displayBlogs() {
@@ -68,6 +70,13 @@
                 blogElement.innerHTML = `<h2>${blog.title}</h2><p>${blog.content}</p><small>${new Date(blog.date).toLocaleString()}</small><p>Category: ${blog.category}</p>`;
                 blogsContainer.appendChild(blogElement);
             });
+        }
+
+        function pushToCategoryPage(blog) {
+            const categoryPage = `${blog.category}.html`;
+            let categoryBlogs = JSON.parse(localStorage.getItem(categoryPage)) || [];
+            categoryBlogs.push(blog);
+            localStorage.setItem(categoryPage, JSON.stringify(categoryBlogs));
         }
 
         // Display blogs on page load
