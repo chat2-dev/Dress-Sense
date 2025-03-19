@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const ctx = canvas.getContext('2d');
     let currentTool = 'pencil';
     let drawing = false;
-    let startX, startY;
+    let startX, startY, isDrawing = false;
 
     document.getElementById('pencil-tool').addEventListener('click', () => currentTool = 'pencil');
     document.getElementById('rectangle-tool').addEventListener('click', () => currentTool = 'rectangle');
@@ -17,9 +17,17 @@ document.addEventListener("DOMContentLoaded", function () {
         drawing = true;
         startX = e.offsetX;
         startY = e.offsetY;
+        if (currentTool === 'line') {
+            isDrawing = true;
+        }
     });
 
-    canvas.addEventListener('mouseup', () => drawing = false);
+    canvas.addEventListener('mouseup', () => {
+        drawing = false;
+        if (isDrawing && currentTool === 'line') {
+            isDrawing = false;
+        }
+    });
 
     canvas.addEventListener('mousemove', (e) => {
         if (!drawing) return;
@@ -34,6 +42,15 @@ document.addEventListener("DOMContentLoaded", function () {
                 break;
             case 'eraser':
                 erase(mouseX, mouseY);
+                break;
+            case 'line':
+                if (isDrawing) {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    ctx.beginPath();
+                    ctx.moveTo(startX, startY);
+                    ctx.lineTo(mouseX, mouseY);
+                    ctx.stroke();
+                }
                 break;
             // Add cases for other tools
         }
