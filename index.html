@@ -55,14 +55,18 @@
         }
    </style>
     <script>
-
         function toggleMenu() {
-
             const menuContent = document.getElementById('menu-content');
-
             menuContent.classList.toggle('open');
-
         }
+
+        document.addEventListener('click', function(event) {
+            const menuContent = document.getElementById('menu-content');
+            const menuIcon = document.querySelector('.menu-icon');
+            if (!menuContent.contains(event.target) && !menuIcon.contains(event.target)) {
+                menuContent.classList.remove('open');
+            }
+        });
     </script>
 </head>
 <body>
