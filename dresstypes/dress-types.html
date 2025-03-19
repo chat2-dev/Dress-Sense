@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <script src="../script.js"></script>
     <title>Dress Types - Dress Sense</title>
     <style>
         .container {
@@ -32,7 +32,7 @@
     <header>
         <div id="menu-placeholder"></div>
         <script>
-            fetch("menu.html")
+            fetch("../menu.html")
                 .then(response => response.text())
                 .then(data => {
                     document.getElementById("menu-placeholder").innerHTML = data;
