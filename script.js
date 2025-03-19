@@ -15,7 +15,7 @@ fetch('../menu.html')
         const menuContent = document.getElementById('menu-content');
 
         menuIcon.addEventListener('click', function() {
-            menuContent.classList.toggle('open');
+            toggleMenu();
         });
 
         document.addEventListener('click', function(event) {
@@ -24,3 +24,8 @@ fetch('../menu.html')
             }
         });
     });
+
+function toggleMenu() {
+    const menuContent = document.getElementById('menu-content');
+    menuContent.classList.toggle('open');
+}
