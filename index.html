@@ -29,6 +29,11 @@
         .menu-bar {
             background-color: #333;
             overflow: hidden;
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
         }
         .menu-bar a {
             float: left;
@@ -42,10 +47,19 @@
             background-color: #ddd;
             color: black;
         }
+        .menu-icon {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            font-size: 30px;
+            cursor: pointer;
+            color: #d4af37;
+        }
     </style>
 </head>
 <body>
     <header>
+        <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
         <div id="menu-bar" class="menu-bar">
             <a href="index.html">Home</a>
             <a href="fabrics/fabrics.html">Fabrics</a>
@@ -97,5 +111,15 @@
     <footer style="background-color: #333; color: white; text-align: center; padding: 1rem; margin-top: 2rem;">
         <p>&copy; 2024 Dress Sense | All rights reserved</p>
     </footer>
+    <script>
+        function toggleMenu() {
+            var menuBar = document.getElementById('menu-bar');
+            if (menuBar.style.display === 'block') {
+                menuBar.style.display = 'none';
+            } else {
+                menuBar.style.display = 'block';
+            }
+        }
+    </script>
 </body>
 </html>
