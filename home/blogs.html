@@ -16,6 +16,7 @@
             <div id="blogs-container">
                 <!-- Blogs will be dynamically inserted here -->
             </div>
+            <button id="view-all-blogs" class="button" style="display: none;">View All Blogs</button>
             <!-- Add a form for users to submit blogs -->
             <form id="blog-form">
                 <label for="blog-title">Title:</label>
@@ -62,15 +63,35 @@
 
         function displayBlogs() {
             const blogsContainer = document.getElementById('blogs-container');
+            const viewAllButton = document.getElementById('view-all-blogs');
             blogsContainer.innerHTML = '';
             const blogs = JSON.parse(localStorage.getItem('blogs')) || [];
+            const blogsToShow = blogs.slice(0, 5); // Show only the first 5 blogs initially
+            blogsToShow.forEach(blog => {
+                const blogElement = document.createElement('div');
+                blogElement.className = 'blog';
+                blogElement.innerHTML = `<h2>${blog.title}</h2><p>${blog.content}</p><small>${new Date(blog.date).toLocaleString()}</small><p>Category: ${blog.category}</p>`;
+                blogsContainer.appendChild(blogElement);
+            });
+            if (blogs.length > 5) {
+                viewAllButton.style.display = 'block';
+            } else {
+                viewAllButton.style.display = 'none';
+            }
+        }
+
+        document.getElementById('view-all-blogs').addEventListener('click', function() {
+            const blogsContainer = document.getElementById('blogs-container');
+            const blogs = JSON.parse(localStorage.getItem('blogs')) || [];
+            blogsContainer.innerHTML = '';
             blogs.forEach(blog => {
                 const blogElement = document.createElement('div');
                 blogElement.className = 'blog';
                 blogElement.innerHTML = `<h2>${blog.title}</h2><p>${blog.content}</p><small>${new Date(blog.date).toLocaleString()}</small><p>Category: ${blog.category}</p>`;
                 blogsContainer.appendChild(blogElement);
             });
-        }
+            this.style.display = 'none';
+        });
 
         function pushToCategoryPage(blog) {
             const categoryPage = `${blog.category}.html`;
