@@ -21,87 +21,16 @@
             text-decoration: none;
             border-radius: 5px;
         }
-        
-.menu-icon {
-    cursor: pointer;
-    padding: 14px 20px;
-    display: inline-block;
-}
-
-.menu-icon img {
-    width: 24px;
-    height: 24px;
-        }
-
-.menu-content {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    background-color: #d4af37;
-    z-index: 1;
-}
-
-.menu-content.open {
-    display: block;
-        }
-
-        .menu-bar {
-            position: relative;
-            background-color: #d4af37;
-            width: 100%;
-            padding: 1rem;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        .menu-content {
-            background-color: #d4af37;
-            padding: 1rem;
-        }
         h1 {
             font-family: 'Dancing Script', cursive;
             font-size: 3rem;
             color: #d4af37;
         }
    </style>
-    <script>
-        function toggleMenu() {
-            const menuContent = document.getElementById('menu-content');
-            menuContent.classList.toggle('open');
-        }
-
-        document.addEventListener('click', function(event) {
-            const menuContent = document.getElementById('menu-content');
-            const menuIcon = document.querySelector('.menu-icon');
-            if (!menuContent.contains(event.target) && !menuIcon.contains(event.target)) {
-                menuContent.classList.remove('open');
-            }
-        });
-    </script>
 </head>
 <body>
     <header>
-        <nav class="menu-bar">
-            <div id="menu-icon" class="menu-icon" onclick="toggleMenu()">
-                <img id="menu-icon-img" src="image/menu.png" alt="Menu Icon"> <!-- Verify this path -->     
-            </div>
-            <div class="menu-content" id="menu-content">
-                <ul>
-                    <li><a href="search/search.html" class="menu-link" data-page="home">search</a></li>
-                    <li><a href="index.html" class="menu-link" data-page="home">HOME</a></li>
-                    <li><a href="fabrics/fabrics.html" class="menu-link" data-page="fabrics/fabrics.html">FABRICS</a></li>
-                    <li><a href="fashion-trends.html" class="menu-link" data-page="fashion-trends">FASHION TRENDS</a></li>
-                    <li><a href="dress-types.html" class="menu-link" data-page="dress-types">DRESS TYPE</a></li>
-                    <li><a href="dye.html" class="menu-link" data-page="dye">DYE</a></li>
-                    <li><a href="designboard/designboard.html" class="menu-link" data-page="home">Designboard</a></li>
-                    <li><a href="index.html" class="menu-link" data-page="home">FABRIC VILLAGE</a></li>
-                    <li><a href="index.html" class="menu-link" data-page="home">BRANDS</a></li>
-                    <li><a href="index.html" class="menu-link" data-page="home">PATTERNS</a></li>
-                    <li><a href="about.html" class="menu-link" data-page="about">MODELS</a></li>
-                    <li><a href="contact.html" class="menu-link" data-page="contact">CONTACT</a></li>
-                </ul>
-            </div>
-        </nav>
+        <div id="menu-bar"></div>
         <h1>Dress Sense</h1>
     </header>
     <main>
