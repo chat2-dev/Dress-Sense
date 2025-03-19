@@ -32,4 +32,29 @@ document.addEventListener("DOMContentLoaded", function () {
             }, 100); // Delay to ensure menu loads
         })
         .catch(error => console.error("Error loading menu:", error));
+
+    const canvas = document.getElementById("design-canvas");
+    const ctx = canvas.getContext("2d");
+
+    // Example: Draw a simple rectangle on the canvas
+    ctx.fillStyle = "#d4af37";
+    ctx.fillRect(100, 100, 200, 150);
+
+    // Add event listeners for fabric selection buttons
+    const fabricButtons = document.querySelectorAll(".fabric-option button");
+    fabricButtons.forEach(button => {
+        button.addEventListener("click", function () {
+            alert(`You selected ${this.textContent}`);
+        });
+    });
+
+    // Add event listener for save design button
+    const saveButton = document.getElementById("save-design");
+    saveButton.addEventListener("click", function () {
+        const dataURL = canvas.toDataURL("image/png");
+        const link = document.createElement("a");
+        link.href = dataURL;
+        link.download = "design.png";
+        link.click();
+    });
 });

@@ -3,10 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link rel="stylesheet" href="style.css">
-    
+    <link rel="stylesheet" href="style.css">
     <title>Dress Sense</title>
-    
     <style>
          .container {
             padding: 2rem;
@@ -82,30 +80,46 @@
 </nav>
  <h1>Dress Sence</h1>
     </header>
-    
-        
-
-
-  <div class="container">
-        <div class="section">
-            <h2>Explore Fashion Trends</h2>
-            <p>Stay updated with the latest trends in fashion and fabrics.</p>
-            <a href="#" class="button">Learn More</a>
+    <main>
+        <section id="design-board">
+            <h2>Design Board</h2>
+            <div id="canvas-container">
+                <canvas id="design-canvas" width="800" height="600"></canvas>
+            </div>
+            <button id="save-design" class="button">Save Design</button>
+        </section>
+        <section id="fabric-selection">
+            <h2>Select Fabrics</h2>
+            <div class="fabric-option">
+                <img src="images/cotton.jpg" alt="Cotton">
+                <button class="button">Select Cotton</button>
+            </div>
+            <div class="fabric-option">
+                <img src="images/silk.jpg" alt="Silk">
+                <button class="button">Select Silk</button>
+            </div>
+        </section>
+        <div class="container">
+            <div class="section">
+                <h2>Explore Fashion Trends</h2>
+                <p>Stay updated with the latest trends in fashion and fabrics.</p>
+                <a href="#" class="button">Learn More</a>
+            </div>
+            <div class="section">
+                <h2>Discover Fabrics</h2>
+                <p>Find detailed information about different fabrics and their uses.</p>
+                <a href="#" class="button">Discover Now</a>
+            </div>
+            <div class="section">
+                <h2>Know Your Dress Type</h2>
+                <p>Learn which dress types suit you the best!</p>
+                <a href="#" class="button">Get Started</a>
+            </div>
         </div>
-        <div class="section">
-            <h2>Discover Fabrics</h2>
-            <p>Find detailed information about different fabrics and their uses.</p>
-            <a href="#" class="button">Discover Now</a>
-        </div>
-        <div class="section">
-            <h2>Know Your Dress Type</h2>
-            <p>Learn which dress types suit you the best!</p>
-            <a href="#" class="button">Get Started</a>
-        </div>
-    </div>
-    
+    </main>
     <footer style="background-color: #333; color: white; text-align: center; padding: 1rem; margin-top: 2rem;">
-    <p>&copy; 2024 Dress Sense | All rights reserved</p>
-</footer>
+        <p>&copy; 2024 Dress Sense | All rights reserved</p>
+    </footer>
+    <script src="script.js"></script>
 </body>
 </html>

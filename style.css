@@ -21,3 +21,37 @@ header {
     background-color: #f4f4f4;
     border: 1px solid #ddd;
 }
+main {
+    display: flex;
+    justify-content: space-around;
+    padding: 2rem;
+}
+#design-board, #fabric-selection {
+    width: 45%;
+}
+#canvas-container {
+    border: 1px solid #ddd;
+    padding: 1rem;
+    text-align: center;
+}
+.fabric-option {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+.fabric-option img {
+    width: 100px;
+    height: 100px;
+    margin-right: 1rem;
+}
+button {
+    padding: 0.5rem 1rem;
+    background-color: #d4af37;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #b38e30;
+}
