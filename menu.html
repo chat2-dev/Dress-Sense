@@ -14,3 +14,40 @@
     <li><a href="contact.html" class="menu-link" data-page="contact">CONTACT</a></li>
   </ul>
 </nav>
+
+<style>
+.menu-icon {
+    cursor: pointer;
+    padding: 14px 20px;
+    display: inline-block;
+}
+
+.menu-icon img {
+    width: 24px;
+    height: 24px;
+}
+
+.menu-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #d4af37;
+    z-index: 1;
+}
+
+.menu-content.open {
+    display: block;
+}
+
+.menu-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #d4af37;
+    width: 100%;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+</style>
