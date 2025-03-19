@@ -21,3 +21,19 @@ body {
 #color-picker {
     margin: 10px 0;
 }
+
+#garment-selector {
+    margin: 10px 0;
+}
+
+#garment-parts button {
+    margin: 5px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+#garment-parts button:hover {
+    background-color: #f0f0f0;
+}

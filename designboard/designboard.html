@@ -29,6 +29,13 @@
             <select id="design-selector">
                 <option value="">Select a Design</option>
             </select>
+            <select id="garment-selector">
+                <option value="">Select a Garment</option>
+                <option value="shirt">Shirt</option>
+                <option value="frock">Frock</option>
+                <option value="jeans">Jeans</option>
+            </select>
+            <div id="garment-parts"></div>
         </div>
         <div id="design-board">
             <canvas id="design-canvas" width="800" height="600"></canvas>
@@ -203,6 +210,34 @@
         }
 
         loadDesigns();
+
+        document.getElementById('garment-selector').addEventListener('change', function(event) {
+            const garmentParts = document.getElementById('garment-parts');
+            garmentParts.innerHTML = ''; // Clear previous parts
+            switch (event.target.value) {
+                case 'shirt':
+                    garmentParts.innerHTML = `
+                        <button id="shirt-sleeve">Sleeve</button>
+                        <button id="shirt-collar">Collar</button>
+                        <button id="shirt-body">Body</button>
+                    `;
+                    break;
+                case 'frock':
+                    garmentParts.innerHTML = `
+                        <button id="frock-sleeve">Sleeve</button>
+                        <button id="frock-neck">Neck</button>
+                        <button id="frock-body">Body</button>
+                    `;
+                    break;
+                case 'jeans':
+                    garmentParts.innerHTML = `
+                        <button id="jeans-waist">Waist</button>
+                        <button id="jeans-leg">Leg</button>
+                        <button id="jeans-pocket">Pocket</button>
+                    `;
+                    break;
+            }
+        });
     </script>
 </body>
 </html>

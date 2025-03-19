@@ -27,6 +27,41 @@ document.addEventListener("DOMContentLoaded", function () {
         link.click();
     });
 
+    document.getElementById('garment-selector').addEventListener('change', function(event) {
+        const garmentParts = document.getElementById('garment-parts');
+        garmentParts.innerHTML = ''; // Clear previous parts
+        switch (event.target.value) {
+            case 'shirt':
+                garmentParts.innerHTML = `
+                    <button id="shirt-sleeve">Sleeve</button>
+                    <button id="shirt-collar">Collar</button>
+                    <button id="shirt-body">Body</button>
+                `;
+                break;
+            case 'frock':
+                garmentParts.innerHTML = `
+                    <button id="frock-sleeve">Sleeve</button>
+                    <button id="frock-neck">Neck</button>
+                    <button id="frock-body">Body</button>
+                `;
+                break;
+            case 'jeans':
+                garmentParts.innerHTML = `
+                    <button id="jeans-waist">Waist</button>
+                    <button id="jeans-leg">Leg</button>
+                    <button id="jeans-pocket">Pocket</button>
+                `;
+                break;
+        }
+    });
+
+    // Add event listeners for garment parts buttons
+    document.getElementById('garment-parts').addEventListener('click', function(event) {
+        if (event.target.tagName === 'BUTTON') {
+            alert(`Selected part: ${event.target.id}`);
+        }
+    });
+
     canvas.addEventListener('mousedown', (e) => {
         drawing = true;
         startX = e.offsetX;
