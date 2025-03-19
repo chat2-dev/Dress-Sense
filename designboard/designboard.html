@@ -30,5 +30,50 @@
         <p>&copy; 2024 Dress Sense | All rights reserved</p>
     </footer>
     <script src="script.js"></script>
+    <script>
+        const canvas = document.getElementById('design-canvas');
+        const ctx = canvas.getContext('2d');
+
+        let drawing = false;
+
+        function startDrawing(event) {
+            drawing = true;
+            draw(event);
+        }
+
+        function endDrawing() {
+            drawing = false;
+            ctx.beginPath();
+        }
+
+        function draw(event) {
+            if (!drawing) return;
+
+            ctx.lineWidth = 5;
+            ctx.lineCap = 'round';
+
+            let x, y;
+            if (event.type.includes('touch')) {
+                x = event.touches[0].clientX - canvas.offsetLeft;
+                y = event.touches[0].clientY - canvas.offsetTop;
+            } else {
+                x = event.clientX - canvas.offsetLeft;
+                y = event.clientY - canvas.offsetTop;
+            }
+
+            ctx.lineTo(x, y);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(x, y);
+        }
+
+        canvas.addEventListener('mousedown', startDrawing);
+        canvas.addEventListener('mouseup', endDrawing);
+        canvas.addEventListener('mousemove', draw);
+
+        canvas.addEventListener('touchstart', startDrawing);
+        canvas.addEventListener('touchend', endDrawing);
+        canvas.addEventListener('touchmove', draw);
+    </script>
 </body>
 </html>
