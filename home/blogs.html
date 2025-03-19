@@ -22,6 +22,17 @@
                 <input type="text" id="blog-title" name="title" required>
                 <label for="blog-content">Content:</label>
                 <textarea id="blog-content" name="content" required></textarea>
+                <label for="blog-category">Category:</label>
+                <select id="blog-category" name="category" required>
+                    <option value="fabric">Fabric</option>
+                    <option value="cloth-type">Cloth Type</option>
+                    <option value="brands">Brands</option>
+                    <option value="model">Model</option>
+                    <option value="fashion-trend">Fashion Trend</option>
+                    <option value="fabric-village">Fabric Village</option>
+                    <option value="pattern">Pattern</option>
+                    <option value="dye">Dye</option>
+                </select>
                 <button type="submit" class="button">Submit Blog</button>
             </form>
         </div>
@@ -35,7 +46,8 @@
             event.preventDefault();
             const title = document.getElementById('blog-title').value;
             const content = document.getElementById('blog-content').value;
-            const blog = { title, content, date: new Date().toISOString() };
+            const category = document.getElementById('blog-category').value;
+            const blog = { title, content, category, date: new Date().toISOString() };
             // Store the blog in local storage
             let blogs = JSON.parse(localStorage.getItem('blogs')) || [];
             blogs.push(blog);
@@ -53,7 +65,7 @@
             blogs.forEach(blog => {
                 const blogElement = document.createElement('div');
                 blogElement.className = 'blog';
-                blogElement.innerHTML = `<h2>${blog.title}</h2><p>${blog.content}</p><small>${new Date(blog.date).toLocaleString()}</small>`;
+                blogElement.innerHTML = `<h2>${blog.title}</h2><p>${blog.content}</p><small>${new Date(blog.date).toLocaleString()}</small><p>Category: ${blog.category}</p>`;
                 blogsContainer.appendChild(blogElement);
             });
         }
