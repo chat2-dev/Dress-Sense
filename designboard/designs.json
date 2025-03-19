@@ -1,0 +1,17 @@
+[
+    {
+        "id": "design1",
+        "name": "Floral Dress",
+        "image": "images/floral_dress.png"
+    },
+    {
+        "id": "design2",
+        "name": "Striped Shirt",
+        "image": "images/striped_shirt.png"
+    },
+    {
+        "id": "design3",
+        "name": "Polka Dot Skirt",
+        "image": "images/polka_dot_skirt.png"
+    }
+]

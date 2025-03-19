@@ -48,3 +48,9 @@ main {
 #download-design:hover {
     background-color: #007bb5;
 }
+
+#design-selector {
+    margin: 10px;
+    padding: 5px;
+    font-size: 16px;
+}

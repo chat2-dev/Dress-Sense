@@ -26,6 +26,9 @@
             <button id="color-picker">Color Picker</button>
             <button id="save-design">Save Design</button>
             <button id="download-design">Download Design</button>
+            <select id="design-selector">
+                <option value="">Select a Design</option>
+            </select>
         </div>
         <div id="design-board">
             <canvas id="design-canvas" width="800" height="600"></canvas>
@@ -96,6 +99,37 @@
         canvas.addEventListener('touchstart', startDrawing);
         canvas.addEventListener('touchend', endDrawing);
         canvas.addEventListener('touchmove', draw);
+
+        async function loadDesigns() {
+            const response = await fetch('designs.json');
+            const designs = await response.json();
+            const designSelector = document.getElementById('design-selector');
+
+            designs.forEach(design => {
+                const option = document.createElement('option');
+                option.value = design.id;
+                option.textContent = design.name;
+                designSelector.appendChild(option);
+            });
+
+            designSelector.addEventListener('change', (event) => {
+                const selectedDesign = designs.find(design => design.id === event.target.value);
+                if (selectedDesign) {
+                    loadDesignOntoCanvas(selectedDesign);
+                }
+            });
+        }
+
+        function loadDesignOntoCanvas(design) {
+            const img = new Image();
+            img.src = design.image;
+            img.onload = () => {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+            };
+        }
+
+        loadDesigns();
     </script>
 </body>
 </html>
