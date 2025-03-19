@@ -20,6 +20,13 @@ document.addEventListener("DOMContentLoaded", function () {
         link.click();
     });
 
+    document.getElementById('download-design').addEventListener('click', () => {
+        const link = document.createElement('a');
+        link.download = 'design.png';
+        link.href = canvas.toDataURL();
+        link.click();
+    });
+
     canvas.addEventListener('mousedown', (e) => {
         drawing = true;
         startX = e.offsetX;

@@ -35,3 +35,16 @@ main {
 #save-design:hover {
     background-color: #45a049;
 }
+
+#download-design {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    background-color: #008CBA;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#download-design:hover {
+    background-color: #007bb5;
+}
