@@ -13,6 +13,13 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById('text-tool').addEventListener('click', () => currentTool = 'text');
     document.getElementById('color-picker').addEventListener('change', (e) => ctx.strokeStyle = e.target.value);
 
+    document.getElementById('save-design').addEventListener('click', () => {
+        const link = document.createElement('a');
+        link.download = 'design.png';
+        link.href = canvas.toDataURL();
+        link.click();
+    });
+
     canvas.addEventListener('mousedown', (e) => {
         drawing = true;
         startX = e.offsetX;
