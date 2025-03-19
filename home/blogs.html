@@ -16,11 +16,50 @@
             <div id="blogs-container">
                 <!-- Blogs will be dynamically inserted here -->
             </div>
+            <!-- Add a form for users to submit blogs -->
+            <form id="blog-form">
+                <label for="blog-title">Title:</label>
+                <input type="text" id="blog-title" name="title" required>
+                <label for="blog-content">Content:</label>
+                <textarea id="blog-content" name="content" required></textarea>
+                <button type="submit" class="button">Submit Blog</button>
+            </form>
         </div>
     </main>
     <footer style="background-color: #333; color: white; text-align: center; padding: 1rem; margin-top: 2rem;">
         <p>&copy; 2024 Dress Sense | All rights reserved</p>
     </footer>
     <script src="script.js"></script>
+    <script>
+        document.getElementById('blog-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const title = document.getElementById('blog-title').value;
+            const content = document.getElementById('blog-content').value;
+            const blog = { title, content, date: new Date().toISOString() };
+            // Store the blog in local storage
+            let blogs = JSON.parse(localStorage.getItem('blogs')) || [];
+            blogs.push(blog);
+            localStorage.setItem('blogs', JSON.stringify(blogs));
+            // Clear the form
+            document.getElementById('blog-form').reset();
+            // Display the blogs
+            displayBlogs();
+        });
+
+        function displayBlogs() {
+            const blogsContainer = document.getElementById('blogs-container');
+            blogsContainer.innerHTML = '';
+            const blogs = JSON.parse(localStorage.getItem('blogs')) || [];
+            blogs.forEach(blog => {
+                const blogElement = document.createElement('div');
+                blogElement.className = 'blog';
+                blogElement.innerHTML = `<h2>${blog.title}</h2><p>${blog.content}</p><small>${new Date(blog.date).toLocaleString()}</small>`;
+                blogsContainer.appendChild(blogElement);
+            });
+        }
+
+        // Display blogs on page load
+        document.addEventListener('DOMContentLoaded', displayBlogs);
+    </script>
 </body>
 </html>
