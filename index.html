@@ -26,32 +26,55 @@
             font-size: 3rem;
             color: #d4af37;
         }
+        .menu-bar {
+            background-color: #333;
+            overflow: hidden;
+        }
+        .menu-bar a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+        }
+        .menu-bar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
     </style>
 </head>
 <body>
     <header>
-        <div id="menu-bar"></div>
+        <div id="menu-bar" class="menu-bar">
+            <a href="#">Home</a>
+            <a href="#fashion-trends">Fashion Trends</a>
+            <a href="#fabrics">Fabrics</a>
+            <a href="#dress-type">Dress Type</a>
+            <a href="#design-clothes">Design Clothes</a>
+            <a href="#blog">Blog</a>
+        </div>
         <h1>Dress Sense</h1>
     </header>
     <main>
-        <div class="container">
+        <div class="container" id="fashion-trends">
             <div class="section">
                 <h2>Explore Fashion Trends</h2>
                 <p>Stay updated with the latest trends in fashion and fabrics.</p>
                 <a href="#" class="button">Learn More</a>
             </div>
-            <div class="section">
+            <div class="section" id="fabrics">
                 <h2>Discover Fabrics</h2>
                 <p>Find detailed information about different fabrics and their uses.</p>
                 <a href="fabrics/fabrics.html" class="button">Discover Now</a>
             </div>
-            <div class="section">
+            <div class="section" id="dress-type">
                 <h2>Know Your Dress Type</h2>
                 <p>Learn which dress types suit you the best!</p>
                 <a href="designboard/designboard.html" class="button">Open Design Board</a>
             </div>
         </div>
-        <h1>Design Your Clothes</h1>
+        <h1 id="design-clothes">Design Your Clothes</h1>
         <div id="design-area">
             <canvas id="design-canvas" width="500" height="500"></canvas>
         </div>
@@ -60,7 +83,7 @@
             <input type="color" id="color-picker">
             <button id="save-design">Save Design</button>
         </div>
-        <div class="section">
+        <div class="section" id="blog">
             <h2>Write a Blog</h2>
             <form id="blog-form">
                 <label for="blog-title">Title:</label>
