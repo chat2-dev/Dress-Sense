@@ -82,5 +82,22 @@
         // Display blogs on page load
         document.addEventListener('DOMContentLoaded', displayBlogs);
     </script>
+    <script>
+        // Fetch and display blogs for category pages
+        document.addEventListener('DOMContentLoaded', function() {
+            const category = document.body.getAttribute('data-category');
+            if (category) {
+                const categoryBlogs = JSON.parse(localStorage.getItem(`${category}.html`)) || [];
+                const blogsContainer = document.getElementById('blogs-container');
+                blogsContainer.innerHTML = '';
+                categoryBlogs.forEach(blog => {
+                    const blogElement = document.createElement('div');
+                    blogElement.className = 'blog';
+                    blogElement.innerHTML = `<h2>${blog.title}</h2><p>${blog.content}</p><small>${new Date(blog.date).toLocaleString()}</small><p>Category: ${blog.category}</p>`;
+                    blogsContainer.appendChild(blogElement);
+                });
+            }
+        });
+    </script>
 </body>
 </html>
