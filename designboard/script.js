@@ -53,7 +53,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 concealed: { x: 100, y: 100, width: 200, height: 300 },
                 standard: { x: 100, y: 100, width: 200, height: 300 },
                 // ...other placket types...
-            }
+            },
+            body: { x: 100, y: 150, width: 200, height: 250 } // Add body structure
         },
         frock: {
             body: { x: 100, y: 100, width: 200, height: 400 },
@@ -112,6 +113,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function drawMandarinCollar(ctx) {
         const { x, y, width, height } = garmentStructures.shirt.collar.mandarin;
+        ctx.strokeRect(x, y, width, height);
+    }
+
+    function drawShirtBody(ctx) {
+        const { x, y, width, height } = garmentStructures.shirt.body;
         ctx.strokeRect(x, y, width, height);
     }
 
@@ -220,6 +226,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const selectedDesign = designs.find(design => design.id === event.target.value);
             if (selectedDesign) {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
+                drawShirtBody(ctx); // Always draw shirt body
                 selectedDesign.parts.forEach(part => {
                     switch (part) {
                         case 'collar':
