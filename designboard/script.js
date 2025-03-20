@@ -92,6 +92,11 @@ document.addEventListener("DOMContentLoaded", function () {
         ctx.strokeRect(x, y, width, height);
     }
 
+    function drawMandarinCollar(ctx) {
+        const { x, y, width, height } = garmentStructures.shirt.collar.mandarin;
+        ctx.strokeRect(x, y, width, height);
+    }
+
     function drawFrockBody(ctx) {
         const { x, y, width, height } = garmentStructures.frock.body;
         ctx.strokeRect(x, y, width, height);
@@ -200,7 +205,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 selectedDesign.parts.forEach(part => {
                     switch (part) {
                         case 'collar':
-                            drawShirtCollar(ctx, 'mandarin'); // Example type
+                            drawMandarinCollar(ctx); // Draw Mandarin collar
                             break;
                         case 'sleeves':
                             drawShirtSleeves(ctx, 'raglan'); // Example type
