@@ -1,17 +1,17 @@
 [
     {
         "id": "design1",
-        "name": "Floral Dress",
+        "name": "Shirt",
         "parts": ["collar", "sleeves", "cuffs", "hemline", "placket"]
     },
     {
         "id": "design2",
-        "name": "Striped Shirt",
+        "name": "frock",
         "parts": ["collar", "sleeves", "cuffs", "hemline", "placket"]
     },
     {
         "id": "design3",
-        "name": "Polka Dot Skirt",
+        "name": "Jeans",
         "parts": ["collar", "sleeves", "cuffs", "hemline", "placket"]
     }
 ]
