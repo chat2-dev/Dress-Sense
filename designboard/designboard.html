@@ -334,6 +334,10 @@
                 document.getElementById('selected-garment').textContent = `Garment: ${selectedGarment}`;
                 document.getElementById('selected-component').textContent = `Component: ${selectedComponent} (${selectedComponentType})`;
             });
+
+            document.getElementById('start-designing').addEventListener('click', function () {
+                popupForm.style.display = 'block';
+            });
         });
     </script>
 </body>
