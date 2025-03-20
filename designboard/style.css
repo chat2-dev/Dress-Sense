@@ -66,3 +66,18 @@ main {
     border-radius: 5px;
     border: 1px solid #ddd;
 }
+
+/* Add styles for the new "Start Designing" button */
+#start-designing {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    background-color: #ff9800;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#start-designing:hover {
+    background-color: #e68900;
+}

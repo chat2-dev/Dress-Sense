@@ -27,6 +27,11 @@ document.addEventListener("DOMContentLoaded", function () {
         link.click();
     });
 
+    // Add event listener for the new "Start Designing" button
+    document.getElementById('start-designing').addEventListener('click', () => {
+        alert('Let your creativity flow! Start designing your garment now.');
+    });
+
     const garmentStructures = {
         shirt: {
             collar: {
