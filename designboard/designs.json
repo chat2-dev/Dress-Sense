@@ -6,12 +6,12 @@
     },
     {
         "id": "design2",
-        "name": "frock",
-        "parts": ["collar", "sleeves", "cuffs", "hemline", "placket"]
+        "name": "Frock",
+        "parts": ["body", "sleeve", "neck"]
     },
     {
         "id": "design3",
         "name": "Jeans",
-        "parts": ["collar", "sleeves", "cuffs", "hemline", "placket"]
+        "parts": ["waist", "leg", "pocket"]
     }
 ]
