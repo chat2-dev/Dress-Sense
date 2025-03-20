@@ -27,35 +27,58 @@ document.addEventListener("DOMContentLoaded", function () {
         link.click();
     });
 
+    const garmentStructures = {
+        shirt: {
+            body: { x: 100, y: 100, width: 200, height: 300 },
+            sleeve: { x: 50, y: 100, width: 50, height: 150 },
+            collar: { x: 100, y: 50, width: 200, height: 50 }
+        },
+        frock: {
+            body: { x: 100, y: 100, width: 200, height: 400 },
+            sleeve: { x: 50, y: 100, width: 50, height: 150 },
+            neck: { x: 100, y: 50, width: 200, height: 50 }
+        },
+        jeans: {
+            waist: { x: 100, y: 50, width: 200, height: 50 },
+            leg: { x: 100, y: 100, width: 100, height: 300 },
+            pocket: { x: 150, y: 150, width: 50, height: 50 }
+        }
+    };
+
+    function placeElement(ctx, element, structure) {
+        ctx.strokeRect(structure.x, structure.y, structure.width, structure.height);
+        ctx.fillText(element, structure.x + structure.width / 2, structure.y + structure.height / 2);
+    }
+
+    function drawGarment(ctx, garmentType, selectedElements) {
+        const structure = garmentStructures[garmentType];
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        selectedElements.forEach(element => {
+            if (structure[element]) {
+                placeElement(ctx, element, structure[element]);
+            }
+        });
+    }
+
     document.getElementById('garment-selector').addEventListener('change', function(event) {
+        const garmentType = event.target.value;
         const garmentParts = document.getElementById('garment-parts');
         garmentParts.innerHTML = ''; // Clear previous parts
-        switch (event.target.value) {
-            case 'shirt':
-                garmentParts.innerHTML = `
-                    <button id="shirt-sleeve">Sleeve</button>
-                    <button id="shirt-collar">Collar</button>
-                    <button id="shirt-body">Body</button>
-                `;
-                break;
-            case 'frock':
-                garmentParts.innerHTML = `
-                    <button id="frock-sleeve">Sleeve</button>
-                    <button id="frock-neck">Neck</button>
-                    <button id="frock-body">Body</button>
-                `;
-                break;
-            case 'jeans':
-                garmentParts.innerHTML = `
-                    <button id="jeans-waist">Waist</button>
-                    <button id="jeans-leg">Leg</button>
-                    <button id="jeans-pocket">Pocket</button>
-                `;
-                break;
+
+        if (garmentStructures[garmentType]) {
+            Object.keys(garmentStructures[garmentType]).forEach(part => {
+                const button = document.createElement('button');
+                button.id = `${garmentType}-${part}`;
+                button.textContent = part.charAt(0).toUpperCase() + part.slice(1);
+                button.addEventListener('click', () => {
+                    drawGarment(ctx, garmentType, [part]);
+                });
+                garmentParts.appendChild(button);
+            });
         }
     });
 
-    // Add event listeners for garment parts buttons
     document.getElementById('garment-parts').addEventListener('click', function(event) {
         if (event.target.tagName === 'BUTTON') {
             alert(`Selected part: ${event.target.id}`);
