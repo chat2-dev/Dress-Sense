@@ -83,6 +83,12 @@ document.addEventListener("DOMContentLoaded", function () {
         ctx.strokeRect(x, y, width, height);
     }
 
+    // Add function to draw raglan sleeve
+    function drawRaglanSleeve(ctx) {
+        const { x, y, width, height } = garmentStructures.shirt.sleeves.raglan;
+        ctx.strokeRect(x, y, width, height);
+    }
+
     function drawShirtCuffs(ctx, type) {
         const { x, y, width, height } = garmentStructures.shirt.cuffs[type];
         ctx.strokeRect(x, y, width, height);
@@ -214,7 +220,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             drawSpreadCollar(ctx); // Draw Spread collar
                             break;
                         case 'sleeves':
-                            drawShirtSleeves(ctx, 'raglan'); // Example type
+                            drawRaglanSleeve(ctx); // Draw Raglan sleeve
                             break;
                         case 'cuffs':
                             drawShirtCuffs(ctx, 'barrel'); // Example type

@@ -7,7 +7,7 @@
     {
         "id": "design2",
         "name": "Frock",
-        "parts": ["body", "sleeve", "neck"]
+        "parts": ["body", "sleeve", "neck", "raglan"]
     },
     {
         "id": "design3",
