@@ -90,52 +90,8 @@ document.addEventListener("DOMContentLoaded", function () {
         ctx.strokeRect(x, y, width, height);
     }
 
-    document.getElementById('garment-selector').addEventListener('change', function(event) {
-        const garmentType = event.target.value;
-        const garmentParts = document.getElementById('garment-parts');
-        garmentParts.innerHTML = ''; // Clear previous parts
-
-        if (garmentStructures[garmentType]) {
-            Object.keys(garmentStructures[garmentType]).forEach(part => {
-                const button = document.createElement('button');
-                button.id = `${garmentType}-${part}`;
-                button.textContent = part.charAt(0).toUpperCase() + part.slice(1);
-                button.addEventListener('click', () => {
-                    ctx.clearRect(0, 0, canvas.width, canvas.height);
-                    switch (part) {
-                        case 'body':
-                            garmentType === 'shirt' ? drawShirtBody(ctx) : drawFrockBody(ctx);
-                            break;
-                        case 'sleeve':
-                            garmentType === 'shirt' ? drawShirtSleeve(ctx) : drawFrockSleeve(ctx);
-                            break;
-                        case 'collar':
-                            drawShirtCollar(ctx);
-                            break;
-                        case 'neck':
-                            drawFrockNeck(ctx);
-                            break;
-                        case 'waist':
-                            drawJeansWaist(ctx);
-                            break;
-                        case 'leg':
-                            drawJeansLeg(ctx);
-                            break;
-                        case 'pocket':
-                            drawJeansPocket(ctx);
-                            break;
-                    }
-                });
-                garmentParts.appendChild(button);
-            });
-        }
-    });
-
-    document.getElementById('garment-parts').addEventListener('click', function(event) {
-        if (event.target.tagName === 'BUTTON') {
-            alert(`Selected part: ${event.target.id}`);
-        }
-    });
+    document.getElementById('garment-selector').remove();
+    document.getElementById('garment-parts').remove();
 
     canvas.addEventListener('mousedown', (e) => {
         drawing = true;

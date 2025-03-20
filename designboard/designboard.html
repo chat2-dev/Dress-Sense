@@ -23,6 +23,13 @@
             display: block;
             margin: 10px 0;
         }
+        #selected-garment {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        #selected-component {
+            margin-top: 5px;
+        }
     </style>
 </head>
 <body>
@@ -57,13 +64,8 @@
             <select id="design-selector">
                 <option value="">Select a Design</option>
             </select>
-            <select id="garment-selector">
-                <option value="">Select a Garment</option>
-                <option value="shirt">Shirt</option>
-                <option value="frock">Frock</option>
-                <option value="jeans">Jeans</option>
-            </select>
-            <div id="garment-parts"></div>
+            <div id="selected-garment"></div>
+            <div id="selected-component"></div>
         </div>
         <div id="design-board" style="display: none;">
             <canvas id="design-canvas" width="800" height="600"></canvas>
@@ -239,34 +241,6 @@
 
         loadDesigns();
 
-        document.getElementById('garment-selector').addEventListener('change', function(event) {
-            const garmentParts = document.getElementById('garment-parts');
-            garmentParts.innerHTML = ''; // Clear previous parts
-            switch (event.target.value) {
-                case 'shirt':
-                    garmentParts.innerHTML = `
-                        <button id="shirt-sleeve">Sleeve</button>
-                        <button id="shirt-collar">Collar</button>
-                        <button id="shirt-body">Body</button>
-                    `;
-                    break;
-                case 'frock':
-                    garmentParts.innerHTML = `
-                        <button id="frock-sleeve">Sleeve</button>
-                        <button id="frock-neck">Neck</button>
-                        <button id="frock-body">Body</button>
-                    `;
-                    break;
-                case 'jeans':
-                    garmentParts.innerHTML = `
-                        <button id="jeans-waist">Waist</button>
-                        <button id="jeans-leg">Leg</button>
-                        <button id="jeans-pocket">Pocket</button>
-                    `;
-                    break;
-            }
-        });
-
         document.addEventListener("DOMContentLoaded", function () {
             const popupForm = document.getElementById('popup-form');
             const startDesignButton = document.getElementById('start-design');
@@ -303,6 +277,12 @@
                 popupForm.style.display = 'none';
                 toolbar.style.display = 'block';
                 designBoard.style.display = 'block';
+
+                const selectedGarment = garmentTypeSelect.options[garmentTypeSelect.selectedIndex].text;
+                const selectedComponent = garmentComponentSelect.options[garmentComponentSelect.selectedIndex].text;
+
+                document.getElementById('selected-garment').textContent = `Garment: ${selectedGarment}`;
+                document.getElementById('selected-component').textContent = `Component: ${selectedComponent}`;
             });
         });
     </script>
