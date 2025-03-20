@@ -192,4 +192,51 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Add functions for other tools
+
+    async function loadDesigns() {
+        const response = await fetch('designs.json');
+        const designs = await response.json();
+        const designSelector = document.getElementById('design-selector');
+
+        designs.forEach(design => {
+            const option = document.createElement('option');
+            option.value = design.id;
+            option.textContent = design.name;
+            designSelector.appendChild(option);
+        });
+
+        designSelector.addEventListener('change', (event) => {
+            const selectedDesign = designs.find(design => design.id === event.target.value);
+            if (selectedDesign) {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                selectedDesign.parts.forEach(part => {
+                    switch (part) {
+                        case 'body':
+                            drawShirtBody(ctx);
+                            break;
+                        case 'sleeve':
+                            drawShirtSleeve(ctx);
+                            break;
+                        case 'collar':
+                            drawShirtCollar(ctx);
+                            break;
+                        case 'neck':
+                            drawFrockNeck(ctx);
+                            break;
+                        case 'waist':
+                            drawJeansWaist(ctx);
+                            break;
+                        case 'leg':
+                            drawJeansLeg(ctx);
+                            break;
+                        case 'pocket':
+                            drawJeansPocket(ctx);
+                            break;
+                    }
+                });
+            }
+        });
+    }
+
+    loadDesigns();
 });

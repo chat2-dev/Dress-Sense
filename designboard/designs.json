@@ -2,16 +2,16 @@
     {
         "id": "design1",
         "name": "Floral Dress",
-        "image": "images/floral_dress.png"
+        "parts": ["body", "sleeve", "neck"]
     },
     {
         "id": "design2",
         "name": "Striped Shirt",
-        "image": "images/striped_shirt.png"
+        "parts": ["body", "sleeve", "collar"]
     },
     {
         "id": "design3",
         "name": "Polka Dot Skirt",
-        "image": "images/polka_dot_skirt.png"
+        "parts": ["waist", "leg", "pocket"]
     }
 ]
