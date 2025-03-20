@@ -9,6 +9,20 @@
         .active-tool {
             border: 2px solid #000;
         }
+        #popup-form {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        #popup-form input, #popup-form button {
+            display: block;
+            margin: 10px 0;
+        }
     </style>
 </head>
 <body>
@@ -16,7 +30,15 @@
         <h1>Design Board</h1>
     </header>
     <main>
-        <div id="toolbar">
+        <div id="popup-form">
+            <h2>Enter Your Details</h2>
+            <label for="username">Name:</label>
+            <input type="text" id="username" name="username" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <button id="start-design">Start Designing</button>
+        </div>
+        <div id="toolbar" style="display: none;">
             <button id="pencil-tool">Pencil</button>
             <button id="rectangle-tool">Rectangle</button>
             <button id="circle-tool">Circle</button>
@@ -37,7 +59,7 @@
             </select>
             <div id="garment-parts"></div>
         </div>
-        <div id="design-board">
+        <div id="design-board" style="display: none;">
             <canvas id="design-canvas" width="800" height="600"></canvas>
         </div>
     </main>
@@ -237,6 +259,28 @@
                     `;
                     break;
             }
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const popupForm = document.getElementById('popup-form');
+            const startDesignButton = document.getElementById('start-design');
+            const toolbar = document.getElementById('toolbar');
+            const designBoard = document.getElementById('design-board');
+
+            popupForm.style.display = 'block';
+
+            startDesignButton.addEventListener('click', function () {
+                const username = document.getElementById('username').value;
+                const email = document.getElementById('email').value;
+
+                if (username && email) {
+                    popupForm.style.display = 'none';
+                    toolbar.style.display = 'block';
+                    designBoard.style.display = 'block';
+                } else {
+                    alert('Please fill in all fields.');
+                }
+            });
         });
     </script>
 </body>
