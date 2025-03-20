@@ -27,7 +27,6 @@ document.addEventListener("DOMContentLoaded", function () {
         link.click();
     });
 
-    // Add event listener for the new "Start Designing" button
     document.getElementById('start-designing').addEventListener('click', () => {
         document.getElementById('popup-form').style.display = 'block';
         document.getElementById('toolbar').style.display = 'none';
@@ -80,7 +79,6 @@ document.addEventListener("DOMContentLoaded", function () {
         ctx.strokeRect(x, y, width, height);
     }
 
-    // Add function to draw spread collar
     function drawSpreadCollar(ctx) {
         const { x, y, width, height } = garmentStructures.shirt.collar.spread;
         ctx.strokeRect(x, y, width, height);
@@ -91,7 +89,6 @@ document.addEventListener("DOMContentLoaded", function () {
         ctx.strokeRect(x, y, width, height);
     }
 
-    // Add function to draw raglan sleeve
     function drawRaglanSleeve(ctx) {
         const { x, y, width, height } = garmentStructures.shirt.sleeves.raglan;
         ctx.strokeRect(x, y, width, height);
@@ -102,7 +99,6 @@ document.addEventListener("DOMContentLoaded", function () {
         ctx.strokeRect(x, y, width, height);
     }
 
-    // Add function to draw barrel cuffs
     function drawBarrelCuffs(ctx) {
         const { x, y, width, height } = garmentStructures.shirt.cuffs.barrel;
         ctx.strokeRect(x, y, width, height);
@@ -276,4 +272,37 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     loadDesigns();
+
+    document.getElementById('start-design').addEventListener('click', function () {
+        const selectedGarment = document.getElementById('garment-type').value;
+        const selectedComponentType = document.getElementById('component-type').value;
+
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        drawShirtBody(ctx); // Always draw shirt body
+
+        switch (selectedComponentType) {
+            case 'collar':
+                drawSpreadCollar(ctx); // Example type
+                break;
+            case 'sleeves':
+                drawRaglanSleeve(ctx); // Example type
+                break;
+            case 'cuffs':
+                drawBarrelCuffs(ctx); // Example type
+                break;
+            case 'hemline':
+                drawShirtHemline(ctx, 'straight'); // Example type
+                break;
+            case 'placket':
+                drawShirtPlacket(ctx, 'concealed'); // Example type
+                break;
+        }
+
+        document.getElementById('popup-form').style.display = 'none';
+        document.getElementById('toolbar').style.display = 'block';
+        document.getElementById('design-board').style.display = 'block';
+
+        document.getElementById('selected-garment').textContent = `Garment: ${selectedGarment}`;
+        document.getElementById('selected-component').textContent = `Component: ${selectedComponentType}`;
+    });
 });
