@@ -45,20 +45,49 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     };
 
-    function placeElement(ctx, element, structure) {
-        ctx.strokeRect(structure.x, structure.y, structure.width, structure.height);
-        ctx.fillText(element, structure.x + structure.width / 2, structure.y + structure.height / 2);
+    function drawShirtBody(ctx) {
+        const { x, y, width, height } = garmentStructures.shirt.body;
+        ctx.strokeRect(x, y, width, height);
     }
 
-    function drawGarment(ctx, garmentType, selectedElements) {
-        const structure = garmentStructures[garmentType];
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    function drawShirtSleeve(ctx) {
+        const { x, y, width, height } = garmentStructures.shirt.sleeve;
+        ctx.strokeRect(x, y, width, height);
+    }
 
-        selectedElements.forEach(element => {
-            if (structure[element]) {
-                placeElement(ctx, element, structure[element]);
-            }
-        });
+    function drawShirtCollar(ctx) {
+        const { x, y, width, height } = garmentStructures.shirt.collar;
+        ctx.strokeRect(x, y, width, height);
+    }
+
+    function drawFrockBody(ctx) {
+        const { x, y, width, height } = garmentStructures.frock.body;
+        ctx.strokeRect(x, y, width, height);
+    }
+
+    function drawFrockSleeve(ctx) {
+        const { x, y, width, height } = garmentStructures.frock.sleeve;
+        ctx.strokeRect(x, y, width, height);
+    }
+
+    function drawFrockNeck(ctx) {
+        const { x, y, width, height } = garmentStructures.frock.neck;
+        ctx.strokeRect(x, y, width, height);
+    }
+
+    function drawJeansWaist(ctx) {
+        const { x, y, width, height } = garmentStructures.jeans.waist;
+        ctx.strokeRect(x, y, width, height);
+    }
+
+    function drawJeansLeg(ctx) {
+        const { x, y, width, height } = garmentStructures.jeans.leg;
+        ctx.strokeRect(x, y, width, height);
+    }
+
+    function drawJeansPocket(ctx) {
+        const { x, y, width, height } = garmentStructures.jeans.pocket;
+        ctx.strokeRect(x, y, width, height);
     }
 
     document.getElementById('garment-selector').addEventListener('change', function(event) {
@@ -72,7 +101,30 @@ document.addEventListener("DOMContentLoaded", function () {
                 button.id = `${garmentType}-${part}`;
                 button.textContent = part.charAt(0).toUpperCase() + part.slice(1);
                 button.addEventListener('click', () => {
-                    drawGarment(ctx, garmentType, [part]);
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    switch (part) {
+                        case 'body':
+                            garmentType === 'shirt' ? drawShirtBody(ctx) : drawFrockBody(ctx);
+                            break;
+                        case 'sleeve':
+                            garmentType === 'shirt' ? drawShirtSleeve(ctx) : drawFrockSleeve(ctx);
+                            break;
+                        case 'collar':
+                            drawShirtCollar(ctx);
+                            break;
+                        case 'neck':
+                            drawFrockNeck(ctx);
+                            break;
+                        case 'waist':
+                            drawJeansWaist(ctx);
+                            break;
+                        case 'leg':
+                            drawJeansLeg(ctx);
+                            break;
+                        case 'pocket':
+                            drawJeansPocket(ctx);
+                            break;
+                    }
                 });
                 garmentParts.appendChild(button);
             });
