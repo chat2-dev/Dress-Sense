@@ -19,7 +19,7 @@
             padding: 20px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
         }
-        #popup-form input, #popup-form button {
+        #popup-form select, #popup-form button {
             display: block;
             margin: 10px 0;
         }
@@ -31,11 +31,17 @@
     </header>
     <main>
         <div id="popup-form">
-            <h2>Enter Your Details</h2>
-            <label for="username">Name:</label>
-            <input type="text" id="username" name="username" required>
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
+            <h2>Select Garment and Component</h2>
+            <label for="garment-type">Garment Type:</label>
+            <select id="garment-type">
+                <option value="shirt">Shirt</option>
+                <option value="frock">Frock</option>
+                <option value="jeans">Jeans</option>
+            </select>
+            <label for="garment-component">Component:</label>
+            <select id="garment-component">
+                <!-- Options will be populated dynamically -->
+            </select>
             <button id="start-design">Start Designing</button>
         </div>
         <div id="toolbar" style="display: none;">
@@ -266,20 +272,37 @@
             const startDesignButton = document.getElementById('start-design');
             const toolbar = document.getElementById('toolbar');
             const designBoard = document.getElementById('design-board');
+            const garmentTypeSelect = document.getElementById('garment-type');
+            const garmentComponentSelect = document.getElementById('garment-component');
+
+            const garmentComponents = {
+                shirt: ['Sleeve', 'Collar', 'Body'],
+                frock: ['Sleeve', 'Neck', 'Body'],
+                jeans: ['Waist', 'Leg', 'Pocket']
+            };
+
+            function populateComponents(garmentType) {
+                garmentComponentSelect.innerHTML = '';
+                garmentComponents[garmentType].forEach(component => {
+                    const option = document.createElement('option');
+                    option.value = component.toLowerCase();
+                    option.textContent = component;
+                    garmentComponentSelect.appendChild(option);
+                });
+            }
+
+            garmentTypeSelect.addEventListener('change', function () {
+                populateComponents(garmentTypeSelect.value);
+            });
+
+            populateComponents(garmentTypeSelect.value); // Initial population
 
             popupForm.style.display = 'block';
 
             startDesignButton.addEventListener('click', function () {
-                const username = document.getElementById('username').value;
-                const email = document.getElementById('email').value;
-
-                if (username && email) {
-                    popupForm.style.display = 'none';
-                    toolbar.style.display = 'block';
-                    designBoard.style.display = 'block';
-                } else {
-                    alert('Please fill in all fields.');
-                }
+                popupForm.style.display = 'none';
+                toolbar.style.display = 'block';
+                designBoard.style.display = 'block';
             });
         });
     </script>
