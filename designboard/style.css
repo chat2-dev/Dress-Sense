@@ -3,6 +3,8 @@ body {
     margin: 0;
     padding: 0;
     background-color: #f8f4f0;
+    background-image: url('background.jpg');
+    background-size: cover;
     color: #000;
 }
 
@@ -11,16 +13,22 @@ header {
     color: black;
     padding: 1rem 2rem;
     text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 main {
     padding: 2rem;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 #design-board {
     border: 1px solid #ddd;
     padding: 1rem;
     background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 #save-design {
@@ -29,6 +37,7 @@ main {
     background-color: #4CAF50;
     color: white;
     border: none;
+    border-radius: 5px;
     cursor: pointer;
 }
 
@@ -42,6 +51,7 @@ main {
     background-color: #008CBA;
     color: white;
     border: none;
+    border-radius: 5px;
     cursor: pointer;
 }
 
@@ -53,4 +63,6 @@ main {
     margin: 10px;
     padding: 5px;
     font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
 }
