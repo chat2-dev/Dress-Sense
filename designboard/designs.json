@@ -15,3 +15,17 @@
         "parts": ["waist", "leg", "pocket"]
     }
 ]
+
+[
+    {
+        "partId": "component1",
+         "name": "collar",
+         "types": ["mandarin", "spread", "Peter pan", "wingtip", "club", "notehed"]
+    },
+
+    {
+        "partId": "component2",
+        "name": "sleeves",
+        "types": ["raglan", "bishop", "bell", "cap", "dolman", "flutter", "puff"]
+    }
+]

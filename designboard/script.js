@@ -276,6 +276,7 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById('start-design').addEventListener('click', function () {
         const selectedGarment = document.getElementById('garment-type').value;
         const selectedComponentType = document.getElementById('component-type').value;
+        const selectedSleevesType = document.getElementById('sleeves-type').value;
 
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         drawShirtBody(ctx); // Always draw shirt body
@@ -285,7 +286,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 drawSpreadCollar(ctx); // Example type
                 break;
             case 'sleeves':
-                drawRaglanSleeve(ctx); // Example type
+                drawShirtSleeves(ctx, selectedSleevesType); // Draw selected sleeves type
                 break;
             case 'cuffs':
                 drawBarrelCuffs(ctx); // Example type
@@ -304,5 +305,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
         document.getElementById('selected-garment').textContent = `Garment: ${selectedGarment}`;
         document.getElementById('selected-component').textContent = `Component: ${selectedComponentType}`;
+    });
+
+    document.getElementById('start-designing').addEventListener('click', function () {
+        document.getElementById('popup-form').style.display = 'block';
+    });
+
+    document.getElementById('component-type').addEventListener('change', function () {
+        const componentType = this.value;
+        const sleevesTypeSelect = document.getElementById('sleeves-type');
+        if (componentType === 'sleeves') {
+            sleevesTypeSelect.style.display = 'block';
+        } else {
+            sleevesTypeSelect.style.display = 'none';
+        }
     });
 });

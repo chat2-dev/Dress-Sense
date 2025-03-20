@@ -72,6 +72,12 @@
                 <option value="hemline">Hemline</option>
                 <option value="placket">Placket</option>
             </select>
+            <label for="sleeves-type" style="display: none;">Sleeves Type:</label>
+            <select id="sleeves-type" style="display: none;">
+                <option value="raglan">Raglan</option>
+                <option value="bishop">Bishop</option>
+                <!-- Add other sleeve types here -->
+            </select>
             <button id="start-design">Start Designing</button>
         </div>
         <button id="start-designing">Start Designing</button>
@@ -274,6 +280,8 @@
             const garmentTypeSelect = document.getElementById('garment-type');
             const garmentComponentSelect = document.getElementById('garment-component');
             const componentTypeSelect = document.getElementById('component-type');
+            const sleevesTypeLabel = document.getElementById('sleeves-type').previousElementSibling;
+            const sleevesTypeSelect = document.getElementById('sleeves-type');
 
             const garmentComponents = {
                 shirt: ['Sleeve', 'Collar', 'Body'],
@@ -315,6 +323,13 @@
 
             garmentComponentSelect.addEventListener('change', function () {
                 populateComponentTypes(garmentComponentSelect.value);
+                if (garmentComponentSelect.value === 'sleeve') {
+                    sleevesTypeLabel.style.display = 'block';
+                    sleevesTypeSelect.style.display = 'block';
+                } else {
+                    sleevesTypeLabel.style.display = 'none';
+                    sleevesTypeSelect.style.display = 'none';
+                }
             });
 
             populateComponents(garmentTypeSelect.value); // Initial population
