@@ -29,9 +29,31 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const garmentStructures = {
         shirt: {
-            body: { x: 100, y: 100, width: 200, height: 300 },
-            sleeve: { x: 50, y: 100, width: 50, height: 150 },
-            collar: { x: 100, y: 50, width: 200, height: 50 }
+            collar: {
+                mandarin: { x: 100, y: 50, width: 200, height: 50 },
+                spread: { x: 100, y: 50, width: 200, height: 50 },
+                // ...other collar types...
+            },
+            sleeves: {
+                raglan: { x: 50, y: 100, width: 50, height: 150 },
+                bishop: { x: 50, y: 100, width: 50, height: 150 },
+                // ...other sleeve types...
+            },
+            cuffs: {
+                barrel: { x: 50, y: 250, width: 50, height: 50 },
+                french: { x: 50, y: 250, width: 50, height: 50 },
+                // ...other cuff types...
+            },
+            hemline: {
+                straight: { x: 100, y: 400, width: 200, height: 50 },
+                curved: { x: 100, y: 400, width: 200, height: 50 },
+                // ...other hemline types...
+            },
+            placket: {
+                concealed: { x: 100, y: 100, width: 200, height: 300 },
+                standard: { x: 100, y: 100, width: 200, height: 300 },
+                // ...other placket types...
+            }
         },
         frock: {
             body: { x: 100, y: 100, width: 200, height: 400 },
@@ -45,18 +67,28 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     };
 
-    function drawShirtBody(ctx) {
-        const { x, y, width, height } = garmentStructures.shirt.body;
+    function drawShirtCollar(ctx, type) {
+        const { x, y, width, height } = garmentStructures.shirt.collar[type];
         ctx.strokeRect(x, y, width, height);
     }
 
-    function drawShirtSleeve(ctx) {
-        const { x, y, width, height } = garmentStructures.shirt.sleeve;
+    function drawShirtSleeves(ctx, type) {
+        const { x, y, width, height } = garmentStructures.shirt.sleeves[type];
         ctx.strokeRect(x, y, width, height);
     }
 
-    function drawShirtCollar(ctx) {
-        const { x, y, width, height } = garmentStructures.shirt.collar;
+    function drawShirtCuffs(ctx, type) {
+        const { x, y, width, height } = garmentStructures.shirt.cuffs[type];
+        ctx.strokeRect(x, y, width, height);
+    }
+
+    function drawShirtHemline(ctx, type) {
+        const { x, y, width, height } = garmentStructures.shirt.hemline[type];
+        ctx.strokeRect(x, y, width, height);
+    }
+
+    function drawShirtPlacket(ctx, type) {
+        const { x, y, width, height } = garmentStructures.shirt.placket[type];
         ctx.strokeRect(x, y, width, height);
     }
 
@@ -167,14 +199,26 @@ document.addEventListener("DOMContentLoaded", function () {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
                 selectedDesign.parts.forEach(part => {
                     switch (part) {
+                        case 'collar':
+                            drawShirtCollar(ctx, 'mandarin'); // Example type
+                            break;
+                        case 'sleeves':
+                            drawShirtSleeves(ctx, 'raglan'); // Example type
+                            break;
+                        case 'cuffs':
+                            drawShirtCuffs(ctx, 'barrel'); // Example type
+                            break;
+                        case 'hemline':
+                            drawShirtHemline(ctx, 'straight'); // Example type
+                            break;
+                        case 'placket':
+                            drawShirtPlacket(ctx, 'concealed'); // Example type
+                            break;
                         case 'body':
-                            drawShirtBody(ctx);
+                            drawFrockBody(ctx);
                             break;
                         case 'sleeve':
-                            drawShirtSleeve(ctx);
-                            break;
-                        case 'collar':
-                            drawShirtCollar(ctx);
+                            drawFrockSleeve(ctx);
                             break;
                         case 'neck':
                             drawFrockNeck(ctx);

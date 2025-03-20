@@ -2,16 +2,16 @@
     {
         "id": "design1",
         "name": "Floral Dress",
-        "parts": ["body", "sleeve", "neck"]
+        "parts": ["collar", "sleeves", "cuffs", "hemline", "placket"]
     },
     {
         "id": "design2",
         "name": "Striped Shirt",
-        "parts": ["body", "sleeve", "collar"]
+        "parts": ["collar", "sleeves", "cuffs", "hemline", "placket"]
     },
     {
         "id": "design3",
         "name": "Polka Dot Skirt",
-        "parts": ["waist", "leg", "pocket"]
+        "parts": ["collar", "sleeves", "cuffs", "hemline", "placket"]
     }
 ]

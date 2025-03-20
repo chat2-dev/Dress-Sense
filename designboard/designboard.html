@@ -68,6 +68,10 @@
             <select id="garment-component">
                 <!-- Options will be populated dynamically -->
             </select>
+            <label for="component-type">Component Type:</label>
+            <select id="component-type">
+                <!-- Options will be populated dynamically -->
+            </select>
             <button id="start-design">Start Designing</button>
         </div>
         <div id="toolbar" style="display: none;">
@@ -267,11 +271,20 @@
             const designBoard = document.getElementById('design-board');
             const garmentTypeSelect = document.getElementById('garment-type');
             const garmentComponentSelect = document.getElementById('garment-component');
+            const componentTypeSelect = document.getElementById('component-type');
 
             const garmentComponents = {
                 shirt: ['Sleeve', 'Collar', 'Body'],
                 frock: ['Sleeve', 'Neck', 'Body'],
                 jeans: ['Waist', 'Leg', 'Pocket']
+            };
+
+            const componentTypes = {
+                collar: ['Mandarin', 'Spread', 'Peter Pan', 'Wingtip', 'Club', 'Notched'],
+                sleeves: ['Raglan', 'Bishop', 'Bell', 'Cap', 'Dolman', 'Flutter', 'Puff'],
+                cuffs: ['Barrel', 'French', 'Buttoned', 'Turnback', 'Ribbed'],
+                hemline: ['Straight', 'Curved', 'High-Low', 'Asymmetrical'],
+                placket: ['Concealed', 'Standard', 'Full-Front']
             };
 
             function populateComponents(garmentType) {
@@ -284,11 +297,26 @@
                 });
             }
 
+            function populateComponentTypes(component) {
+                componentTypeSelect.innerHTML = '';
+                componentTypes[component].forEach(type => {
+                    const option = document.createElement('option');
+                    option.value = type.toLowerCase().replace(' ', '-');
+                    option.textContent = type;
+                    componentTypeSelect.appendChild(option);
+                });
+            }
+
             garmentTypeSelect.addEventListener('change', function () {
                 populateComponents(garmentTypeSelect.value);
             });
 
+            garmentComponentSelect.addEventListener('change', function () {
+                populateComponentTypes(garmentComponentSelect.value);
+            });
+
             populateComponents(garmentTypeSelect.value); // Initial population
+            populateComponentTypes(garmentComponentSelect.value); // Initial population
 
             popupForm.style.display = 'block';
 
@@ -299,9 +327,10 @@
 
                 const selectedGarment = garmentTypeSelect.options[garmentTypeSelect.selectedIndex].text;
                 const selectedComponent = garmentComponentSelect.options[garmentComponentSelect.selectedIndex].text;
+                const selectedComponentType = componentTypeSelect.options[componentTypeSelect.selectedIndex].text;
 
                 document.getElementById('selected-garment').textContent = `Garment: ${selectedGarment}`;
-                document.getElementById('selected-component').textContent = `Component: ${selectedComponent}`;
+                document.getElementById('selected-component').textContent = `Component: ${selectedComponent} (${selectedComponentType})`;
             });
         });
     </script>
