@@ -11,14 +11,18 @@
         <h1>Design Board</h1>
     </header>
     <main>
-        <div id="popup-form">
-            <h2>Select Garment and Component</h2>
+        <div id="garment-popup-form">
+            <h2>Select Garment</h2>
             <label for="garment-type">Garment Type:</label>
             <select id="garment-type">
                 <option value="shirt">Shirt</option>
                 <option value="frock">Frock</option>
                 <option value="jeans">Jeans</option>
             </select>
+            <button id="select-garment">Next</button>
+        </div>
+        <div id="component-popup-form" style="display: none;">
+            <h2>Select Component</h2>
             <label for="component-type">Component Type:</label>
             <select id="component-type">
                 <option value="collar">Collar</option>
@@ -65,10 +69,6 @@
         const canvas = document.getElementById('design-canvas');
         const ctx = canvas.getContext('2d');
         const tools = document.querySelectorAll('#toolbar button');
-
-        let drawing = false;
-        let currentTool = 'pencil';
-        let startX, startY;
 
         function startDrawing(event) {
             drawing = true;

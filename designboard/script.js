@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     document.getElementById('start-designing').addEventListener('click', () => {
-        document.getElementById('popup-form').style.display = 'block';
+        document.getElementById('garment-popup-form').style.display = 'block';
         document.getElementById('toolbar').style.display = 'none';
         document.getElementById('design-board').style.display = 'none';
     });
@@ -273,6 +273,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     loadDesigns();
 
+    document.getElementById('select-garment').addEventListener('click', function () {
+        document.getElementById('garment-popup-form').style.display = 'none';
+        document.getElementById('component-popup-form').style.display = 'block';
+    });
+
     document.getElementById('start-design').addEventListener('click', function () {
         const selectedGarment = document.getElementById('garment-type').value;
         const selectedComponentType = document.getElementById('component-type').value;
@@ -299,7 +304,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 break;
         }
 
-        document.getElementById('popup-form').style.display = 'none';
+        document.getElementById('component-popup-form').style.display = 'none';
         document.getElementById('toolbar').style.display = 'block';
         document.getElementById('design-board').style.display = 'block';
 
