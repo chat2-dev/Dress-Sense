@@ -12,7 +12,7 @@
     </header>
     <main>
         <div id="garment-popup-form">
-            <h2>Select Garment</h2>
+            <h2>Which Garment do you want now</h2>
             <label for="garment-type">Garment Type:</label>
             <select id="garment-type">
                 <option value="shirt">Shirt</option>
@@ -22,12 +22,12 @@
             <button id="select-garment">Next</button>
         </div>
         <div id="component-popup-form" style="display: none;">
-            <h2>Select Component</h2>
-            <label for="component-type">Component Type:</label>
+            <h2>what do you want in your garment</h2>
+            <label for="component-type">Component:</label>
             <select id="component-type">
                 <!-- Options will be populated dynamically -->
             </select>
-            <label for="specific-type" style="display: none;">Specific Type:</label>
+            <label for="component-type" style="display: none;">Hemline</label>
             <select id="specific-type" style="display: none;">
                 <!-- Options will be populated dynamically -->
             </select>
@@ -239,8 +239,14 @@
             };
 
             const specificTypes = {
+                collar: ['Mandarin', 'Peter Pan'],
                 sleeves: ['Raglan', 'Bishop'],
-                collar: ['Mandarin', 'Peter Pan']
+                cuffs: ['Buttoned', 'French'],
+                hemline: ['Straight', 'Curved'],
+                placket: ['Concealed', 'Exposed'],
+                waist: ['High', 'Low'],
+                leg: ['Straight', 'Tapered'],
+                pocket: ['Patch', 'Welt']
             };
 
             function populateComponentTypes(garmentType) {
