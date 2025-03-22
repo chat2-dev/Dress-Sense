@@ -330,10 +330,6 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById('selected-component').textContent = `Component: ${selectedComponentType} (${selectedSpecificType})`;
     });
 
-    document.getElementById('start-designing').addEventListener('click', function () {
-        document.getElementById('popup-form').style.display = 'block';
-    });
-
     document.getElementById('component-type').addEventListener('change', function () {
         const componentType = this.value;
         const specificTypeSelect = document.getElementById('specific-type');
