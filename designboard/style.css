@@ -132,3 +132,46 @@ main {
     padding: 10px;
     font-size: 16px;
 }
+
+#garment-popup-form, #component-popup-form {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+#garment-popup-form h2, #component-popup-form h2 {
+    margin-top: 0;
+    font-size: 1.5rem;
+    color: #333;
+}
+
+#garment-popup-form label, #component-popup-form label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: bold;
+}
+
+#garment-popup-form select, #component-popup-form select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+#garment-popup-form button, #component-popup-form button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+#garment-popup-form button:hover, #component-popup-form button:hover {
+    background-color: #45a049;
+}
