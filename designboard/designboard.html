@@ -25,11 +25,7 @@
             <h2>Select Component</h2>
             <label for="component-type">Component Type:</label>
             <select id="component-type">
-                <option value="collar">Collar</option>
-                <option value="sleeves">Sleeves</option>
-                <option value="cuffs">Cuffs</option>
-                <option value="hemline">Hemline</option>
-                <option value="placket">Placket</option>
+                <!-- Options will be populated dynamically -->
             </select>
             <label for="sleeves-type" style="display: none;">Sleeves Type:</label>
             <select id="sleeves-type" style="display: none;">
@@ -228,43 +224,25 @@
         loadDesigns();
 
         document.addEventListener("DOMContentLoaded", function () {
-            const popupForm = document.getElementById('popup-form');
+            const garmentPopupForm = document.getElementById('garment-popup-form');
+            const componentPopupForm = document.getElementById('component-popup-form');
             const startDesignButton = document.getElementById('start-design');
             const toolbar = document.getElementById('toolbar');
             const designBoard = document.getElementById('design-board');
             const garmentTypeSelect = document.getElementById('garment-type');
-            const garmentComponentSelect = document.getElementById('garment-component');
             const componentTypeSelect = document.getElementById('component-type');
             const sleevesTypeLabel = document.getElementById('sleeves-type').previousElementSibling;
             const sleevesTypeSelect = document.getElementById('sleeves-type');
 
-            const garmentComponents = {
-                shirt: ['Sleeve', 'Collar', 'Body'],
-                frock: ['Sleeve', 'Neck', 'Body'],
+            const componentTypes = {
+                shirt: ['Collar', 'Sleeves', 'Cuffs', 'Hemline', 'Placket'],
+                frock: ['Collar', 'Sleeves', 'Cuffs', 'Hemline', 'Placket'],
                 jeans: ['Waist', 'Leg', 'Pocket']
             };
 
-            const componentTypes = {
-                collar: ['Mandarin', 'Spread', 'Peter Pan', 'Wingtip', 'Club', 'Notched'],
-                sleeves: ['Raglan', 'Bishop', 'Bell', 'Cap', 'Dolman', 'Flutter', 'Puff'],
-                cuffs: ['Barrel', 'French', 'Buttoned', 'Turnback', 'Ribbed'],
-                hemline: ['Straight', 'Curved', 'High-Low', 'Asymmetrical'],
-                placket: ['Concealed', 'Standard', 'Full-Front']
-            };
-
-            function populateComponents(garmentType) {
-                garmentComponentSelect.innerHTML = '';
-                garmentComponents[garmentType].forEach(component => {
-                    const option = document.createElement('option');
-                    option.value = component.toLowerCase();
-                    option.textContent = component;
-                    garmentComponentSelect.appendChild(option);
-                });
-            }
-
-            function populateComponentTypes(component) {
+            function populateComponentTypes(garmentType) {
                 componentTypeSelect.innerHTML = '';
-                componentTypes[component].forEach(type => {
+                componentTypes[garmentType].forEach(type => {
                     const option = document.createElement('option');
                     option.value = type.toLowerCase().replace(' ', '-');
                     option.textContent = type;
@@ -273,12 +251,12 @@
             }
 
             garmentTypeSelect.addEventListener('change', function () {
-                populateComponents(garmentTypeSelect.value);
+                populateComponentTypes(garmentTypeSelect.value);
+                componentPopupForm.style.display = 'block';
             });
 
-            garmentComponentSelect.addEventListener('change', function () {
-                populateComponentTypes(garmentComponentSelect.value);
-                if (garmentComponentSelect.value === 'sleeve') {
+            componentTypeSelect.addEventListener('change', function () {
+                if (componentTypeSelect.value === 'sleeves') {
                     sleevesTypeLabel.style.display = 'block';
                     sleevesTypeSelect.style.display = 'block';
                 } else {
@@ -287,26 +265,26 @@
                 }
             });
 
-            populateComponents(garmentTypeSelect.value); // Initial population
-            populateComponentTypes(garmentComponentSelect.value); // Initial population
+            populateComponentTypes(garmentTypeSelect.value); // Initial population
 
-            popupForm.style.display = 'block';
+            garmentPopupForm.style.display = 'block';
 
             startDesignButton.addEventListener('click', function () {
-                popupForm.style.display = 'none';
+                garmentPopupForm.style.display = 'none';
+                componentPopupForm.style.display = 'none';
                 toolbar.style.display = 'block';
                 designBoard.style.display = 'block';
 
                 const selectedGarment = garmentTypeSelect.options[garmentTypeSelect.selectedIndex].text;
-                const selectedComponent = garmentComponentSelect.options[garmentComponentSelect.selectedIndex].text;
-                const selectedComponentType = componentTypeSelect.options[componentTypeSelect.selectedIndex].text;
+                const selectedComponent = componentTypeSelect.options[componentTypeSelect.selectedIndex].text;
+                const selectedComponentType = sleevesTypeSelect.options[sleevesTypeSelect.selectedIndex]?.text || '';
 
                 document.getElementById('selected-garment').textContent = `Garment: ${selectedGarment}`;
-                document.getElementById('selected-component').textContent = `Component: ${selectedComponent} (${selectedComponentType})`;
+                document.getElementById('selected-component').textContent = `Component: ${selectedComponent} ${selectedComponentType ? `(${selectedComponentType})` : ''}`;
             });
 
             document.getElementById('start-designing').addEventListener('click', function () {
-                popupForm.style.display = 'block';
+                garmentPopupForm.style.display = 'block';
             });
         });
     </script>
