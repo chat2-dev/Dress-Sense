@@ -296,6 +296,11 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
+    document.getElementById('select-garment').addEventListener('click', function () {
+        document.getElementById('garment-popup-form').style.display = 'none';
+        document.getElementById('component-popup-form').style.display = 'block';
+    });
+
     document.getElementById('start-design').addEventListener('click', function () {
         const selectedGarment = document.getElementById('garment-type').value;
         const selectedComponentType = document.getElementById('component-type').value;
