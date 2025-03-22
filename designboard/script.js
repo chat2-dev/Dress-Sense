@@ -299,26 +299,26 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById('start-design').addEventListener('click', function () {
         const selectedGarment = document.getElementById('garment-type').value;
         const selectedComponentType = document.getElementById('component-type').value;
-        const selectedSleevesType = document.getElementById('sleeves-type').value;
+        const selectedSpecificType = document.getElementById('specific-type').value;
 
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         drawShirtBody(ctx); // Always draw shirt body
 
         switch (selectedComponentType) {
             case 'collar':
-                drawSpreadCollar(ctx); // Example type
+                drawShirtCollar(ctx, selectedSpecificType); // Draw selected collar type
                 break;
             case 'sleeves':
-                drawShirtSleeves(ctx, selectedSleevesType); // Draw selected sleeves type
+                drawShirtSleeves(ctx, selectedSpecificType); // Draw selected sleeves type
                 break;
             case 'cuffs':
-                drawBarrelCuffs(ctx); // Example type
+                drawShirtCuffs(ctx, selectedSpecificType); // Draw selected cuffs type
                 break;
             case 'hemline':
-                drawShirtHemline(ctx, 'straight'); // Example type
+                drawShirtHemline(ctx, selectedSpecificType); // Draw selected hemline type
                 break;
             case 'placket':
-                drawShirtPlacket(ctx, 'concealed'); // Example type
+                drawShirtPlacket(ctx, selectedSpecificType); // Draw selected placket type
                 break;
         }
 
@@ -327,7 +327,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById('design-board').style.display = 'block';
 
         document.getElementById('selected-garment').textContent = `Garment: ${selectedGarment}`;
-        document.getElementById('selected-component').textContent = `Component: ${selectedComponentType}`;
+        document.getElementById('selected-component').textContent = `Component: ${selectedComponentType} (${selectedSpecificType})`;
     });
 
     document.getElementById('start-designing').addEventListener('click', function () {
@@ -336,11 +336,24 @@ document.addEventListener("DOMContentLoaded", function () {
 
     document.getElementById('component-type').addEventListener('change', function () {
         const componentType = this.value;
-        const sleevesTypeSelect = document.getElementById('sleeves-type');
-        if (componentType === 'sleeves') {
-            sleevesTypeSelect.style.display = 'block';
-        } else {
-            sleevesTypeSelect.style.display = 'none';
-        }
+        const specificTypeSelect = document.getElementById('specific-type');
+        specificTypeSelect.innerHTML = '';
+
+        const specificTypes = {
+            collar: ['Mandarin', 'Spread', 'Peter Pan', 'Wingtip', 'Club', 'Notched'],
+            sleeves: ['Raglan', 'Bishop', 'Bell', 'Cap', 'Dolman', 'Flutter', 'Puff'],
+            cuffs: ['Barrel', 'French', 'Buttoned', 'Turnback', 'Ribbed'],
+            hemline: ['Straight', 'Curved', 'High-Low', 'Asymmetrical'],
+            placket: ['Concealed', 'Standard', 'Full-Front']
+        };
+
+        specificTypes[componentType].forEach(type => {
+            const option = document.createElement('option');
+            option.value = type.toLowerCase().replace(' ', '-');
+            option.textContent = type;
+            specificTypeSelect.appendChild(option);
+        });
+
+        specificTypeSelect.style.display = 'block';
     });
 });

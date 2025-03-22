@@ -27,11 +27,9 @@
             <select id="component-type">
                 <!-- Options will be populated dynamically -->
             </select>
-            <label for="sleeves-type" style="display: none;">Sleeves Type:</label>
-            <select id="sleeves-type" style="display: none;">
-                <option value="raglan">Raglan</option>
-                <option value="bishop">Bishop</option>
-                <!-- Add other sleeve types here -->
+            <label for="specific-type" style="display: none;">Specific Type:</label>
+            <select id="specific-type" style="display: none;">
+                <!-- Options will be populated dynamically -->
             </select>
             <button id="start-design">Start Designing</button>
         </div>
@@ -231,13 +229,18 @@
             const designBoard = document.getElementById('design-board');
             const garmentTypeSelect = document.getElementById('garment-type');
             const componentTypeSelect = document.getElementById('component-type');
-            const sleevesTypeLabel = document.getElementById('sleeves-type').previousElementSibling;
-            const sleevesTypeSelect = document.getElementById('sleeves-type');
+            const specificTypeLabel = document.getElementById('specific-type').previousElementSibling;
+            const specificTypeSelect = document.getElementById('specific-type');
 
             const componentTypes = {
                 shirt: ['Collar', 'Sleeves', 'Cuffs', 'Hemline', 'Placket'],
                 frock: ['Collar', 'Sleeves', 'Cuffs', 'Hemline', 'Placket'],
                 jeans: ['Waist', 'Leg', 'Pocket']
+            };
+
+            const specificTypes = {
+                sleeves: ['Raglan', 'Bishop'],
+                collar: ['Mandarin', 'Peter Pan']
             };
 
             function populateComponentTypes(garmentType) {
@@ -250,19 +253,30 @@
                 });
             }
 
+            function populateSpecificTypes(componentType) {
+                specificTypeSelect.innerHTML = '';
+                if (specificTypes[componentType]) {
+                    specificTypes[componentType].forEach(type => {
+                        const option = document.createElement('option');
+                        option.value = type.toLowerCase().replace(' ', '-');
+                        option.textContent = type;
+                        specificTypeSelect.appendChild(option);
+                    });
+                    specificTypeLabel.style.display = 'block';
+                    specificTypeSelect.style.display = 'block';
+                } else {
+                    specificTypeLabel.style.display = 'none';
+                    specificTypeSelect.style.display = 'none';
+                }
+            }
+
             garmentTypeSelect.addEventListener('change', function () {
                 populateComponentTypes(garmentTypeSelect.value);
                 componentPopupForm.style.display = 'block';
             });
 
             componentTypeSelect.addEventListener('change', function () {
-                if (componentTypeSelect.value === 'sleeves') {
-                    sleevesTypeLabel.style.display = 'block';
-                    sleevesTypeSelect.style.display = 'block';
-                } else {
-                    sleevesTypeLabel.style.display = 'none';
-                    sleevesTypeSelect.style.display = 'none';
-                }
+                populateSpecificTypes(componentTypeSelect.value);
             });
 
             populateComponentTypes(garmentTypeSelect.value); // Initial population
@@ -277,10 +291,10 @@
 
                 const selectedGarment = garmentTypeSelect.options[garmentTypeSelect.selectedIndex].text;
                 const selectedComponent = componentTypeSelect.options[componentTypeSelect.selectedIndex].text;
-                const selectedComponentType = sleevesTypeSelect.options[sleevesTypeSelect.selectedIndex]?.text || '';
+                const selectedSpecificType = specificTypeSelect.options[specificTypeSelect.selectedIndex]?.text || '';
 
                 document.getElementById('selected-garment').textContent = `Garment: ${selectedGarment}`;
-                document.getElementById('selected-component').textContent = `Component: ${selectedComponent} ${selectedComponentType ? `(${selectedComponentType})` : ''}`;
+                document.getElementById('selected-component').textContent = `Component: ${selectedComponent} ${selectedSpecificType ? `(${selectedSpecificType})` : ''}`;
             });
 
             document.getElementById('start-designing').addEventListener('click', function () {
