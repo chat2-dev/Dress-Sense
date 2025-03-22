@@ -276,24 +276,12 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById('select-garment').addEventListener('click', function () {
         const selectedGarment = document.getElementById('garment-type').value;
         document.getElementById('garment-popup-form').style.display = 'none';
-        document.getElementById('component-popup-form').style.display = 'block';
-
-        // Populate component types based on selected garment
-        const componentTypeSelect = document.getElementById('component-type');
-        componentTypeSelect.innerHTML = '';
-
-        const componentTypes = {
-            shirt: ['Collar', 'Sleeves', 'Cuffs', 'Hemline', 'Placket'],
-            frock: ['Sleeve', 'Neck', 'Body'],
-            jeans: ['Waist', 'Leg', 'Pocket']
-        };
-
-        componentTypes[selectedGarment].forEach(type => {
-            const option = document.createElement('option');
-            option.value = type.toLowerCase();
-            option.textContent = type;
-            componentTypeSelect.appendChild(option);
-        });
+        
+        if (selectedGarment === 'shirt') {
+            document.getElementById('shirt-components').style.display = 'block';
+        } else {
+            document.getElementById('component-popup-form').style.display = 'block';
+        }
     });
 
     document.getElementById('select-garment').addEventListener('click', function () {
