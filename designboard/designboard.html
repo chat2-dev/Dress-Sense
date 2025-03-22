@@ -23,13 +23,26 @@
         </div>
         <div id="component-popup-form" style="display: none;">
             <h2>what do you want in your garment</h2>
-            <label for="component-type">Component:</label>
-            <select id="component-type">
-                <!-- Options will be populated dynamically -->
+            <label for="component">Collar</label>
+            <select id="component">
+                <option value="mandarin">Mandarin</option>
+                <option value="spread">Spread</option>
+                <option value="peterpan">PeterPan</option>
+                <option value="wingtip">wingtip</option>
+                <option value="club">Club</option>
+                <option value="notched">notched</option>
+        
             </select>
-            <label for="component-type" style="display: none;">Hemline</label>
-            <select id="specific-type" style="display: none;">
-                <!-- Options will be populated dynamically -->
+           
+            <label for="component2">sleeves </label>
+            <select id="component2">
+                <option value="mandarin">Rayglan</option>
+                <option value="spread">Bishop</option>
+                <option value="peterpan">Bell</option>
+                <option value="wingtip">cap</option>
+                <option value="club">Dolman</option>
+                <option value="notched">Flutter</option>
+                <option value="puff">Puff</option>
             </select>
             <button id="start-design">Start Designing</button>
         </div>
@@ -49,7 +62,8 @@
                 <option value="">Select a Design</option>
             </select>
             <div id="selected-garment"></div>
-            <div id="selected-component"></div>
+            <div id="component"></div>
+        <div id="component2"></div>
         </div>
         <div id="design-board" style="display: none;">
             <canvas id="design-canvas" width="800" height="600"></canvas>
