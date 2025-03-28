@@ -22,28 +22,27 @@
             <button id="select-garment">Next</button>
         </div>
         <div id="shirt-components" style="display: none;">
-            <h2>what do you want in your garment</h2>
-            <label for="component">Collar</label>
-            <select id="component">
+            <h2>Select Shirt Components</h2>
+            <label for="collar-type">Collar Type:</label>
+            <select id="collar-type">
                 <option value="mandarin">Mandarin</option>
                 <option value="spread">Spread</option>
-                <option value="peterpan">PeterPan</option>
-                <option value="wingtip">wingtip</option>
+                <option value="peter-pan">Peter Pan</option>
+                <option value="wingtip">Wingtip</option>
                 <option value="club">Club</option>
-                <option value="notched">notched</option>
-        
+                <option value="notched">Notched</option>
             </select>
-            <label for="component2">sleeves </label>
-            <select id="component2">
-                <option value="mandarin">Rayglan</option>
-                <option value="spread">Bishop</option>
-                <option value="peterpan">Bell</option>
-                <option value="wingtip">cap</option>
-                <option value="club">Dolman</option>
-                <option value="notched">Flutter</option>
+            <label for="sleeve-type">Sleeve Type:</label>
+            <select id="sleeve-type">
+                <option value="raglan">Raglan</option>
+                <option value="bishop">Bishop</option>
+                <option value="bell">Bell</option>
+                <option value="cap">Cap</option>
+                <option value="dolman">Dolman</option>
+                <option value="flutter">Flutter</option>
                 <option value="puff">Puff</option>
             </select>
-            <button id="start-design">Start Designing</button>
+            <button id="start-shirt-design">Start Shirt Design</button>
         </div>
         <div id="component-popup-form" style="display: none;">
         </div>
@@ -324,7 +323,7 @@
 
             document.getElementById('select-garment').addEventListener('click', function () {
                 garmentPopupForm.style.display = 'none';
-                componentPopupForm.style.display = 'block';
+                document.getElementById('shirt-components').style.display = 'block';
             });
         });
     </script>

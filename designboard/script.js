@@ -276,12 +276,30 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById('select-garment').addEventListener('click', function () {
         const selectedGarment = document.getElementById('garment-type').value;
         document.getElementById('garment-popup-form').style.display = 'none';
-        
+
         if (selectedGarment === 'shirt') {
             document.getElementById('shirt-components').style.display = 'block';
         } else {
             document.getElementById('component-popup-form').style.display = 'block';
         }
+    });
+
+    document.getElementById('start-shirt-design').addEventListener('click', function () {
+        const collarType = document.getElementById('collar-type').value;
+        const sleeveType = document.getElementById('sleeve-type').value;
+
+        document.getElementById('shirt-components').style.display = 'none';
+        document.getElementById('toolbar').style.display = 'block';
+        document.getElementById('design-board').style.display = 'block';
+
+        document.getElementById('selected-garment').textContent = `Garment: Shirt`;
+        document.getElementById('selected-component').textContent = `Components: Collar (${collarType}), Sleeves (${sleeveType})`;
+
+        // Add logic to draw selected components on the canvas
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        drawShirtBody(ctx);
+        drawShirtCollar(ctx, collarType);
+        drawShirtSleeves(ctx, sleeveType);
     });
 
     document.getElementById('start-design').addEventListener('click', function () {
