@@ -275,8 +275,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     document.getElementById('select-garment').addEventListener('click', function () {
         const selectedGarment = document.getElementById('garment-type').value;
+
+        // Hide the garment selection form
         document.getElementById('garment-popup-form').style.display = 'none';
 
+        // Show the appropriate form based on the selected garment
         if (selectedGarment === 'shirt') {
             document.getElementById('shirt-components').style.display = 'block';
         } else {
@@ -288,14 +291,18 @@ document.addEventListener("DOMContentLoaded", function () {
         const collarType = document.getElementById('collar-type').value;
         const sleeveType = document.getElementById('sleeve-type').value;
 
+        // Hide the shirt components form
         document.getElementById('shirt-components').style.display = 'none';
+
+        // Show the toolbar and design board
         document.getElementById('toolbar').style.display = 'block';
         document.getElementById('design-board').style.display = 'block';
 
+        // Update the selected garment and components display
         document.getElementById('selected-garment').textContent = `Garment: Shirt`;
         document.getElementById('selected-component').textContent = `Components: Collar (${collarType}), Sleeves (${sleeveType})`;
 
-        // Add logic to draw selected components on the canvas
+        // Clear the canvas and draw the selected components
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         drawShirtBody(ctx);
         drawShirtCollar(ctx, collarType);
