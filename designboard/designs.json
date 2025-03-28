@@ -1,1 +1,14 @@
-[]
+[
+    {
+        "id": "mandarin-collar",
+        "name": "Mandarin Collar",
+        "type": "collar",
+        "properties": {
+            "x": 100,
+            "y": 50,
+            "width": 200,
+            "height": 50,
+            "color": "#000000"
+        }
+    }
+]

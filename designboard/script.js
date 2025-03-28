@@ -25,4 +25,31 @@ document.addEventListener("DOMContentLoaded", function () {
             formJeansElements.style.display = "block";
         }
     });
+
+    const canvas = document.createElement("canvas");
+    canvas.id = "design-canvas";
+    canvas.width = 800;
+    canvas.height = 600;
+    document.body.appendChild(canvas);
+    const ctx = canvas.getContext("2d");
+
+    async function fetchDesignElement(elementId) {
+        const response = await fetch("designs.json");
+        const designs = await response.json();
+        return designs.find(design => design.id === elementId);
+    }
+
+    async function drawMandarinCollar() {
+        const mandarinCollar = await fetchDesignElement("mandarin-collar");
+        if (mandarinCollar) {
+            const { x, y, width, height, color } = mandarinCollar.properties;
+            ctx.fillStyle = color;
+            ctx.fillRect(x, y, width, height);
+        }
+    }
+
+    // Example: Draw the Mandarin Collar when the "Start Designing" button is clicked
+    document.getElementById("start-shirt-design").addEventListener("click", function () {
+        drawMandarinCollar();
+    });
 });
