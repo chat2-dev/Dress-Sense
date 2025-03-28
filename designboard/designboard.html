@@ -6,5 +6,65 @@
     <title>Design Board</title>
 </head>
 <body>
+    <!-- Form 1: Select Garment -->
+    <div id="form-select-garment">
+        <h2>Select Garment</h2>
+        <label for="garment-type">Garment Type:</label>
+        <select id="garment-type">
+            <option value="shirt">Shirt</option>
+            <option value="frock">Frock</option>
+            <option value="jeans">Jeans</option>
+        </select>
+        <button id="next-to-elements">Next</button>
+    </div>
+
+    <!-- Form 2: Choose Shirt Elements -->
+    <div id="form-shirt-elements" style="display: none;">
+        <h2>Choose Shirt Elements</h2>
+        <label for="collar-type">Collar:</label>
+        <select id="collar-type">
+            <option value="mandarin">Mandarin</option>
+            <option value="spread">Spread</option>
+            <option value="peter-pan">Peter Pan</option>
+            <option value="wingtip">Wingtip</option>
+            <option value="club">Club</option>
+        </select>
+        <label for="sleeve-type">Sleeve:</label>
+        <select id="sleeve-type">
+            <option value="raglan">Raglan</option>
+            <option value="bishop">Bishop</option>
+            <option value="bell">Bell</option>
+        </select>
+        <label for="hemline-type">Hemline:</label>
+        <select id="hemline-type">
+            <option value="straight">Straight</option>
+            <option value="curved">Curved</option>
+        </select>
+        <label for="cuffs-type">Cuffs:</label>
+        <select id="cuffs-type">
+            <option value="barrel">Barrel</option>
+            <option value="french">French</option>
+        </select>
+        <label for="placket-type">Placket:</label>
+        <select id="placket-type">
+            <option value="concealed">Concealed</option>
+            <option value="fly-front">Fly-Front</option>
+        </select>
+        <button id="start-shirt-design">Start Designing</button>
+    </div>
+
+    <!-- Form 3: Choose Frock Elements -->
+    <div id="form-frock-elements" style="display: none;">
+        <h2>Choose Frock Elements</h2>
+        <!-- Add frock-specific elements here -->
+        <button id="start-frock-design">Start Designing</button>
+    </div>
+
+    <!-- Form 4: Choose Jeans Elements -->
+    <div id="form-jeans-elements" style="display: none;">
+        <h2>Choose Jeans Elements</h2>
+        <!-- Add jeans-specific elements here -->
+        <button id="start-jeans-design">Start Designing</button>
+    </div>
 </body>
 </html>
