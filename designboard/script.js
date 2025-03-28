@@ -10,8 +10,11 @@ document.addEventListener("DOMContentLoaded", function () {
     nextButton.addEventListener("click", function () {
         const selectedGarment = garmentTypeSelect.value;
 
-        // Hide the garment selection form
+        // Ensure all forms are hidden before showing the selected one
         formSelectGarment.style.display = "none";
+        formShirtElements.style.display = "none";
+        formFrockElements.style.display = "none";
+        formJeansElements.style.display = "none";
 
         // Show the respective form based on the selected garment
         if (selectedGarment === "shirt") {
