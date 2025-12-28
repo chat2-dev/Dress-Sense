@@ -1,226 +1,167 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Realistic T‑Shirt Dress — Pure HTML & CSS</title>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;500;700;800&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <title>Parametric Shirt Engine – v4 (Sleeve Opening)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <style>
-    :root{
-      --bg:#eef2f5;
-      --panel:#ffffff;
-      --shadow: rgba(15,23,42,0.14);
-      --fabric-main: #3b82f6; /* primary fabric color, editable */
-      --fabric-dark: #2b61d6;
-      --fabric-light: #7fb3ff;
-      --seam: rgba(255,255,255,0.18);
+    body{
+      margin:0;
+      font-family:system-ui,Segoe UI,Roboto;
+      background:#eef2f5;
+      display:flex;
+      min-height:100vh;
     }
 
-    *{box-sizing:border-box}
-    html,body{height:100%;margin:0;font-family:Manrope,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial}
-    body{background:linear-gradient(180deg,var(--bg) 0%, #dfe6ea 100%);display:flex;align-items:center;justify-content:center;padding:36px}
-
-    /* stage */
-    .card{width:960px;max-width:96%;background:var(--panel);border-radius:14px;padding:28px;box-shadow:0 10px 30px var(--shadow);display:grid;grid-template-columns:360px 1fr;gap:24px;align-items:start}
-
-    .left{
-      display:flex;flex-direction:column;gap:14px;align-items:center;padding:8px
+    .controls{
+      width:340px;
+      background:white;
+      padding:20px;
+      box-shadow:4px 0 16px rgba(0,0,0,0.1);
     }
-    .preview-wrap{width:320px;height:520px;background:linear-gradient(180deg,rgba(255,255,255,0.6),transparent);border-radius:12px;display:flex;align-items:center;justify-content:center;position:relative;padding:18px}
 
-    /* hanger */
-    .hanger{
-      width:160px;height:22px;position:absolute;top:8px;left:50%;transform:translateX(-50%);
-      display:flex;align-items:center;justify-content:center;opacity:0.95
+    .controls h2{margin-top:0}
+
+    .controls label{
+      display:block;
+      margin-top:14px;
+      font-size:14px;
     }
-    .hanger::before{content:'';width:120px;height:6px;border-radius:6px;background:linear-gradient(90deg,#cfd8e3,#9aa9c9);box-shadow:0 2px 8px rgba(0,0,0,0.08)}
-    .hanger::after{content:'';width:8px;height:8px;border-radius:50%;background:#ffffff;border:2px solid rgba(0,0,0,0.06);position:absolute;top:-6px}
 
-    /* garment container */
-    .dress-stage{width:260px;height:420px;position:relative}
+    .controls input{width:100%;}
 
-    /* realistic t-shirt dress using SVG with CSS-controlled gradients and textures */
-    .dress-svg{width:100%;height:100%;display:block}
+    .canvas{
+      flex:1;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+    }
 
-    /* right panel controls/info */
-    .right{padding:8px}
-    h1{margin:6px 0 2px 0;font-size:20px}
-    p.lead{margin:0;color:#556777;font-size:14px}
-
-    .specs{margin-top:12px;display:flex;gap:10px;flex-wrap:wrap}
-    .chip{background:linear-gradient(180deg,rgba(255,255,255,0.7),rgba(255,255,255,0.5));padding:8px 10px;border-radius:10px;font-size:13px;color:#263544;border:1px solid rgba(0,0,0,0.03)}
-
-    /* realistic details below viewport */
-    .details{margin-top:18px;color:#475b6a;font-size:14px;line-height:1.5}
-
-    /* footer */
-    .actions{display:flex;gap:10px;margin-top:18px}
-    .btn{padding:10px 14px;border-radius:10px;border:0;background:#111827;color:#fff;cursor:pointer;font-weight:600}
-    .btn.ghost{background:transparent;color:#1f2937;border:1px solid rgba(0,0,0,0.06)}
-
-    /* responsive */
-    @media (max-width:880px){.card{grid-template-columns:1fr;}}
-
-    /* tiny fabric noise overlay (pure CSS using gradients) */
-    .fabric-noise{position:absolute;inset:0;pointer-events:none;mix-blend-mode:overlay;opacity:.18;filter:contrast(1.05) saturate(.95);background-image:
-      radial-gradient(circle at 20% 20%, rgba(255,255,255,0.02) 0, rgba(255,255,255,0.02) 1px, transparent 1px),
-      radial-gradient(circle at 80% 80%, rgba(0,0,0,0.03) 0, rgba(0,0,0,0.03) 1px, transparent 1px);
-      background-size:6px 6px, 8px 8px}
-
-    /* small reflection under dress */
-    .floor-reflect{width:220px;height:36px;border-radius:999px;background:linear-gradient(180deg, rgba(0,0,0,0.12), rgba(0,0,0,0));filter:blur(10px);opacity:0.6;margin-top:10px}
-
-    /* subtle seam stitch (decorative) */
-    .stitch{stroke:rgba(255,255,255,0.25);stroke-dasharray:2 6;stroke-linecap:round}
-
-    /* realistic shadow edge */
-    .dress-shadow{position:absolute;left:50%;transform:translateX(-50%);bottom:20px;width:220px;height:44px;border-radius:50%;background:radial-gradient(ellipse at center, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0) 60%);filter:blur(10px);opacity:.45}
-
-    /* nice label */
-    .brand{font-size:12px;color:#8293a3;margin-top:8px}
+    svg{width:440px;}
   </style>
 </head>
 <body>
-  <div class="card">
-    <div class="left">
-      <div class="preview-wrap">
-        <div class="hanger" aria-hidden></div>
-        <div class="dress-stage" role="img" aria-label="Realistic T-shirt dress preview">
 
-          <!-- SVG T-shirt dress: scalable, with layered gradients for depth, seams, and folds -->
-          <svg class="dress-svg" viewBox="0 0 260 420" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <!-- main fabric gradient -->
-              <linearGradient id="fabricGrad" x1="0" x2="0" y1="0" y2="1">
-                <stop offset="0%" stop-color="var(--fabric-light)" stop-opacity="1" />
-                <stop offset="40%" stop-color="var(--fabric-main)" stop-opacity="1" />
-                <stop offset="100%" stop-color="var(--fabric-dark)" stop-opacity="1" />
-              </linearGradient>
+<div class="controls">
+  <h2>Shirt Parameters (v4)</h2>
 
-              <!-- subtle vertical sheen -->
-              <linearGradient id="sheenGrad" x1="0" x2="1" y1="0" y2="0">
-                <stop offset="0%" stop-color="#ffffff" stop-opacity="0" />
-                <stop offset="30%" stop-color="#ffffff" stop-opacity="0.12" />
-                <stop offset="60%" stop-color="#ffffff" stop-opacity="0.06" />
-                <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
-              </linearGradient>
+  <label>Body Length
+    <input type="range" min="0.45" max="0.85" step="0.01" value="0.65" id="length">
+  </label>
 
-              <!-- inner shadow for armholes and neckline -->
-              <filter id="innerShadow" x="-50%" y="-50%" width="200%" height="200%">
-                <feOffset dx="0" dy="1" result="off"/>
-                <feGaussianBlur in="off" stdDeviation="2" result="blur"/>
-                <feComposite in="SourceGraphic" in2="blur" operator="arithmetic" k2="-1" k3="1"/>
-              </filter>
+  <label>Shoulder Width
+    <input type="range" min="0.35" max="0.6" step="0.01" value="0.45" id="shoulder">
+  </label>
 
-              <!-- tiny fabric grain via turbulence (keeps small file size) -->
-              <filter id="grain">
-                <feTurbulence baseFrequency="0.9" numOctaves="1" stitchTiles="stitch" result="turb" />
-                <feColorMatrix type="saturate" values="0" />
-                <feBlend in="SourceGraphic" in2="turb" mode="overlay" />
-              </filter>
+  <label>Bust Width
+    <input type="range" min="0.38" max="0.6" step="0.01" value="0.5" id="bust">
+  </label>
 
-              <!-- soft drop shadow -->
-              <filter id="soft" x="-50%" y="-50%" width="200%" height="200%">
-                <feGaussianBlur stdDeviation="6"/> 
-              </filter>
-            </defs>
+  <label>Waist Width
+    <input type="range" min="0.28" max="0.55" step="0.01" value="0.4" id="waist">
+  </label>
 
-            <!-- garment group centered -->
-            <g transform="translate(20,10)">
+  <label>Hip Width
+    <input type="range" min="0.35" max="0.6" step="0.01" value="0.48" id="hip">
+  </label>
 
-              <!-- garment shadow behind fabric for depth -->
-              <ellipse cx="110" cy="330" rx="86" ry="28" fill="rgba(0,0,0,0.18)" filter="url(#soft)"/>
+  <label>Sleeve Length
+    <input type="range" min="0.1" max="0.60" step="0.01" value="0.25" id="sleeve">
+  </label>
 
-              <!-- back layer subtle (slightly darker) -->
-              <path d="M110 30 C70 28, 40 36, 28 60 L18 120 C10 160, 18 220, 38 280 C56 336, 166 336, 190 280 C212 224, 220 160, 210 120 L200 60 C188 36,150 28,110 30 Z"
-                fill="rgba(0,0,0,0.03)"/>
+  <label>Sleeve Opening
+    <input type="range" min="0.08" max="0.30" step="0.01" value="0.18" id="opening">
+  </label>
 
-              <!-- main body shape -->
-              <path id="body"
-                d="M110 28 C76 26, 44 34, 32 60 L24 118 C16 156, 24 214, 44 270 C62 322, 158 322, 186 270 C206 214,214 156,206 118 L198 60 C186 34,144 26,110 28 Z"
-                fill="url(#fabricGrad)" stroke="rgba(0,0,0,0.04)" stroke-width="1" />
+  <label>Armhole Depth
+    <input type="range" min="0.05" max="0.25" step="0.01" value="0.12" id="armhole">
+  </label>
 
-              <!-- neckline shadow cut for realism -->
-              <path d="M86 52 C92 44,128 44,134 52 C134 52,112 62,110 62 C108 62,86 52,86 52 Z" fill="rgba(0,0,0,0.06)"/>
+  <label>Neck Radius
+    <input type="range" min="0.08" max="0.2" step="0.01" value="0.12" id="neck">
+  </label>
+</div>
 
-              <!-- sleeves (short) -->
-              <path d="M32 60 C12 68,8 94,28 104 L44 96 C34 82,34 72,44 68 C54 64,46 62,32 60 Z"
-                fill="url(#fabricGrad)" stroke="rgba(0,0,0,0.04)" stroke-width="0.8" />
+<div class="canvas">
+  <svg id="svg" viewBox="0 0 300 540"></svg>
+</div>
 
-              <path d="M198 60 C218 68,222 94,202 104 L186 96 C196 82,196 72,186 68 C176 64,184 62,198 60 Z"
-                fill="url(#fabricGrad)" stroke="rgba(0,0,0,0.04)" stroke-width="0.8" />
+<script>
+  const svg = document.getElementById('svg');
+  const ids = ['length','shoulder','bust','waist','hip','sleeve','opening','neck','armhole'];
+  const p = Object.fromEntries(ids.map(id => [id, document.getElementById(id)]));
+  Object.values(p).forEach(i => i.oninput = draw);
 
-              <!-- subtle folds and creases -->
-              <path d="M70 170 C90 185,120 190,150 172" fill="none" stroke="rgba(0,0,0,0.06)" stroke-width="1.5" stroke-linecap="round" opacity="0.75"/>
-              <path d="M58 210 C88 230,132 230,166 210" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="1.2" stroke-linecap="round" opacity="0.9"/>
+  function draw(){
+    const W = 300;
+    const H = 540;
+    const cx = W/2;
 
-              <!-- seam lines: shoulders -->
-              <path d="M44 96 C66 90,92 88,110 96" fill="none" stroke="rgba(255,255,255,0.09)" stroke-width="1.2" stroke-linecap="round"/>
-              <path d="M198 96 C176 90,150 88,132 96" fill="none" stroke="rgba(255,255,255,0.09)" stroke-width="1.2" stroke-linecap="round"/>
+    const L  = H * p.length.value;
+    const SW = W * p.shoulder.value;
+    const BW = W * p.bust.value;
+    const WW = W * p.waist.value;
+    const HW = W * p.hip.value;
+    const SL = W * p.sleeve.value;
+    const SO = W * p.opening.value;
+    const AD = H * p.armhole.value;
+    const NR = W * p.neck.value;
 
-              <!-- hem stitch (dashed) -->
-              <path d="M44 270 C70 296,160 296,186 270" fill="none" stroke="rgba(0,0,0,0.06)" stroke-width="2" stroke-dasharray="2 6" stroke-linecap="round"/>
+    const topY = 60;
+    const bustY = topY + L*0.25;
+    const waistY = topY + L*0.48;
+    const hipY = topY + L*0.72;
+    const hemY = topY + L;
 
-              <!-- shiny vertical sheen to simulate light on knit fabric -->
-              <path d="M90 48 C100 44,140 44,150 48 C146 92,150 180,150 260"
-                fill="none" stroke="url(#sheenGrad)" stroke-width="42" stroke-linecap="round" opacity="0.25" filter="url(#grain)"/>
+    const lShoulder = cx - SW/2;
+    const rShoulder = cx + SW/2;
 
-              <!-- subtle inner contour (for depth) -->
-              <path d="M52 110 C80 124,140 124,188 110" fill="none" stroke="rgba(0,0,0,0.04)" stroke-width="1" stroke-linecap="round"/>
+    const sleeveEndY = topY + AD + SL;
 
-              <!-- decorative small brand label at hem -->
-              <rect x="112" y="280" width="36" height="10" rx="2" fill="rgba(255,255,255,0.85)" opacity="0.95" />
-              <text x="130" y="288" font-size="7.5" text-anchor="middle" font-family="Manrope, sans-serif" fill="#1f2937">brand</text>
+    svg.innerHTML = `
+      <defs>
+        <linearGradient id="g" x1="0" x2="0" y1="0" y2="1">
+          <stop offset="0%" stop-color="#7dd3fc" />
+          <stop offset="100%" stop-color="#38bdf8" />
+        </linearGradient>
+      </defs>
 
-              <!-- top highlight subtle -->
-              <ellipse cx="110" cy="42" rx="68" ry="10" fill="rgba(255,255,255,0.06)"/>
+      <!-- BODY -->
+      <path d="
+        M ${lShoulder} ${topY}
+        C ${cx-BW/2} ${bustY}, ${cx-WW/2} ${waistY}, ${cx-HW/2} ${hipY}
+        Q ${cx} ${hemY}, ${cx+HW/2} ${hipY}
+        C ${cx+WW/2} ${waistY}, ${cx+BW/2} ${bustY}, ${rShoulder} ${topY}
+        Z"
+        fill="url(#g)" stroke="#000" stroke-width="3" />
 
-            </g>
-          </svg>
+      <!-- LEFT SLEEVE WITH OPENING -->
+      <path d="
+        M ${lShoulder} ${topY}
+        C ${lShoulder-SL} ${topY+AD+20}, ${lShoulder-SL} ${sleeveEndY-20}, ${lShoulder-SO} ${sleeveEndY}
+        L ${lShoulder+SO} ${sleeveEndY}
+        C ${lShoulder-5} ${topY+AD+10}, ${lShoulder-5} ${topY+AD+10}, ${lShoulder} ${topY}
+        Z"
+        fill="url(#g)" stroke="#000" stroke-width="3" />
 
-          <!-- fabric noise overlay element for tactile look -->
-          <div class="fabric-noise" aria-hidden></div>
+      <!-- RIGHT SLEEVE WITH OPENING -->
+      <path d="
+        M ${rShoulder} ${topY}
+        C ${rShoulder+SL} ${topY+AD+20}, ${rShoulder+SL} ${sleeveEndY-20}, ${rShoulder+SO} ${sleeveEndY}
+        L ${rShoulder-SO} ${sleeveEndY}
+        C ${rShoulder+5} ${topY+AD+10}, ${rShoulder+5} ${topY+AD+10}, ${rShoulder} ${topY}
+        Z"
+        fill="url(#g)" stroke="#000" stroke-width="3" />
 
-          <!-- shadow under entire garment -->
-          <div class="dress-shadow" aria-hidden></div>
+      <!-- NECK -->
+      <path d="M ${cx+NR} ${topY} A ${NR} ${NR} 0 0 1 ${cx-NR} ${topY}"
+            stroke="#000" stroke-width="4" fill="none" />
+    `;
+  }
 
-        </div>
-        <div class="floor-reflect" aria-hidden></div>
-        <div class="brand">Made with CSS gradients, SVG shading &amp; tiny grain for realism</div>
-      </div>
-    </div>
+  draw();
+</script>
 
-    <div class="right">
-      <h1>Realistic T‑Shirt Dress</h1>
-      <p class="lead">A lightweight, modern T‑shirt dress rendered with scalable SVG + CSS — no images. Edit colors in the <code>:root</code> variables for quick recolors.</p>
-
-      <div class="specs">
-        <div class="chip">Short sleeves</div>
-        <div class="chip">Relaxed fit</div>
-        <div class="chip">Knit-look sheen</div>
-        <div class="chip">Responsive SVG</div>
-      </div>
-
-      <div class="details">
-        <strong>How it works</strong>
-        <ul>
-          <li>Core shape: single SVG path for crisp edges and scalability.</li>
-          <li>Depth: gradients + drop shadows + subtle fold paths.</li>
-          <li>Tactile feel: CSS radial gradients and a tiny noise overlay emulate knit texture.</li>
-        </ul>
-
-        <strong>Quick edits</strong>
-        <ul>
-          <li>Change the color: modify <code>--fabric-main</code>, <code>--fabric-dark</code> and <code>--fabric-light</code> in the top of the CSS.</li>
-          <li>Make it longer/shorter: adjust the main SVG path coordinates for the body.
-        </ul>
-      </div>
-
-      <div class="actions">
-        <button class="btn">Export PNG (use browser screenshot)</button>
-        <button class="btn ghost">Download SVG</button>
-      </div>
-    </div>
-  </div>
 </body>
 </html>
